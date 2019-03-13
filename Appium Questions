@@ -1,0 +1,24 @@
+1]	What is Appium and why do you need it?
+2]	What’s that one point which made you choose Appium for mobile app testing?
+3]	How many types of apps do you know?
+4]	What are all the pre-requisites for setting up Appium?
+5]	Why should you use Appium? List down some of its advantages.
+6]	What are the known limitations of Appium?
+7]	What would you prefer to test on real devices or use simulators/emulators?
+8]	How do the tests run on simulators/emulators?
+9]	What are the key design concepts behind Appium?
+10]	Which are the test frameworks that Appium supports?
+11]	What are the essentials for writing the Appium tests?
+12]	How would you retrieve a DOM element or the XPath in a mobile app?
+13]	What is Appium inspector and why is it used?
+14]	What are the probable errors you might see while working with Appium?
+15]	What’s the alternative way to interact with mobile apps while using Appium?
+16]	Can you run multithreaded tests in Appium?
+17]	Does it require an <.apk> file for automating tests in Appium?
+18]	How to debug failures in Appium test automation?
+19]	Which are the Selenium commands to use with Appium?
+20]	Does it require a server node to execute Appium tests?
+
+
+
+1 to 20 - https://www.techbeamers.com/selenium-interview-appium-questions-and-answers/#q1
