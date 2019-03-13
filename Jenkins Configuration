@@ -52,3 +52,22 @@ JDK:
 JAVA_HOME
 C:\Program Files\Java\jdk1.8.0_181\
 
+3xx: Redirection
+It means further action must be taken in order to complete the request.
+1.	301 Moved Permanently
+
+4xx: Client Error
+1.	401: Unauthorized
+2.	402: Payment Required
+3.	403: Forbidden 
+4.	404: Not Found
+5.	405: Method Not Allowed
+6.	406: Not Acceptable
+
+for (int i = 1; i <=4; i++) {
+	//Row
+	for (int j = 1; j <=4; j++) {
+		System.out.print(j+" ");
+	}
+	System.out.println();
+}
