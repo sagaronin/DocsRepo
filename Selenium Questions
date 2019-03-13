@@ -1,0 +1,112 @@
+1]	What is Automation Testing?
+2]	What are the benefits of Automation Testing?
+3]	Why should Selenium be Selected as a tested tool?
+4]	What is selenium? What are the Different Selenium Components?
+5]	What are the testing types that can be supported by Selenium?
+6]	What are the limitations of Selenium?
+7]	What is the difference between Selenium IDE, Selenium RC, and WebDriver?
+8]	When should I use selenium IDE?
+9]	What are the different types of Locators in selenium?
+10]	What is the difference between assert and verify commands?
+11]	What is an XPath?
+12]	What is the difference between “/” and “//” in Xpath?
+13]	When should I use Selenium Grid?
+14]	What do we mean by Selenium 1 and Selenium 2?
+15]	Which is the latest Selenium tool?
+16]	How do I launch the browser using WebDriver?
+17]	What are the different types of Drivers available in WebDriver?
+18]	What are the different types of waits available in WebDriver?
+19]	How to type in a textbox using Selenium?
+20]	How can you find if an element in displayed on the screen?
+21]	How can we get a text of a web element?
+22]	How to select value in a dropdown?
+23]	What are the different types of navigation commands?
+24]	How to handle frame in WebDriver?
+25]	When do we use findElement() and findElements()?
+26]	How to find more than one web element in the list?
+27]	What is the difference between driver.close() and driver.quit command?
+28]	Can Selenium handle windows based pop up?
+29]	How can we handle web-based pop up?
+30]	How can we handle windows based pop up?
+31]	How to assert title of the web page?
+32]	How to mouse hover on a web element using WebDriver?
+33]	How to retrieve CSS properties of an element?
+34]	How to capture screenshot in WebDriver?
+35]	What is framework?
+36]	What are the advantages of Automation framework?
+37]	What are the different types of frameworks?
+38]	How can I read test data from excels?
+39]	What is the difference between POI and jxl jar?
+40]	What is the difference between Selenium and QTP?
+41]	Can WebDriver test Mobile applications?
+42]	Can captcha be automated?
+43]	What is Object Repository? How can we create Object Repository in Selenium?
+44]	What is Selenium and What it is composed of?
+45]	What is Selenium 2.0 ?
+46]	Mention what is Selenium 3.0?
+47]	How will you find an element using Selenium?
+48]	List out the test types that are supported by Selenium?
+49]	Explain what is assertion in Selenium and what are the types of assertion?
+50]	Mention what is the use of X-path?
+51]	Explain the difference between single and double slash in X-path?
+52]	List out the technical challenges with Selenium?
+53]	What is the difference between type keys and type commands ?
+54]	What is the difference between verify and assert commands?
+55]	What are the advantages of Selenium?
+56]	Why testers should opt for Selenium and not QTP?
+57]	 What are the four parameter you have to pass in Selenium?
+58]	What is the difference between setSpeed() and sleep() methods?
+59]	What is same origin policy? How you can avoid same origin policy?
+60]	What is heightened privileges browsers?
+61]	How you can use “submit” a form using Selenium ?
+62]	 Mention what is the difference between Implicit wait and Explicit wait?
+63]	Which attribute you should consider throughout the script in frame for “if no frame Id as well as no frame name”?
+64]	Explain what is the difference between find elements () and find element () ?
+65]	Explain what is Datadriven framework and Keyword driven?
+66]	Explain how you can login into any site if it’s showing any authentication popup for password and username?
+67]	Explain how to assert text of webpage using selenium 2.0 ?
+68]	What is Object Repository ?
+69]	Explain how Selenium Grid works?
+70]	Can we use Selenium grid for performance testing?
+71]	 List the advantages of Webdriver over Selenium Server?
+72]	 Mention what are the capabilities of Selenium WebDriver or Selenium 2.0 ?
+73]	While injecting capabilities in webdriver to perform tests on a browser which is not supported by a webdriver what is the limitation that one can come across?
+74]	 Explain how you can find broken images in a page using Selenium Web driver ?
+75]	Explain how you can handle colors in web driver?
+76]	Using web driver how you can store a value which is text box?
+77]	Explain how you can switch between frames?
+78]	Mention 5 different exceptions you had in Selenium web driver?
+79]	Explain using Webdriver how you can perform double click ?
+80]	How will you use  Selenium to upload a file ?
+81]	Which web driver implementation is fastest?
+82]	Explain how you can handle frames using Selenium 2.0 ?
+83]	What is the difference between getWindowhandles() and getwindowhandle() ?
+84]	Explain how you can switch back from a frame? 	
+85]	List out different types of locators?
+86]	What is the command that is used in order to display the values of a variable into the output console or log?
+87]	Explain how you can use recovery scenario with Selenium?
+88]	Explain how to iterate through options in test script?
+89]	What is Selenese and what are the types of Selenese ?
+90]	 In selenium IDE what are the element locators that can be used to locate elements on web page?
+91]	In Selenium IDE how you can generate random numbers and dates for test data ?
+92]	Explain what can cause a Selenium IDE test to fail?
+93]	What is regular expressions? How you can use regular expressions in Selenium ?
+94]	 How will you handle working with multiple windows in Selenium ?
+95]	How will you verify the specific position of an web element?
+96]	 How can you retrive the message in an alert box ?
+97]	Explain what is the main difference between web-driver and RC ?
+98]	 Using Selenium how can you handle network latency ?
+99]	To enter values onto text boxes what is the command that can be used?
+100]	How do you identify an object using selenium?
+101]	Mention what are the challenges in Handling Ajax Call in Selenium Webdriver?
+102]	Mention what is Listeners in Selenium WebDriver?
+103]	Mention what are the types of Listeners in TestNG?
+104]	Mention what is desired capability? How is it useful in terms of Selenium?
+105]	 Mention when to use AutoIT?
+106]	Mention why do you need Session Handling while working with Selenium?
+107]	Mention why do you need Session Handling while working with Selenium?
+108]	Explain Selenium Architecure?
+
+1 to 43 Link - https://www.softwaretestinghelp.com/selenium-interview-questions-answers/
+44 to 107 Link - https://www.guru99.com/top-100-selenium-interview-questions-answers.html
+108 Link - https://www.softwaretestingmaterial.com/selenium-webdriver-architecture/
