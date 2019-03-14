@@ -52,22 +52,57 @@ JDK:
 JAVA_HOME
 C:\Program Files\Java\jdk1.8.0_181\
 
-3xx: Redirection
-It means further action must be taken in order to complete the request.
-1.	301 Moved Permanently
+Git
+Name: Default
+C:\Program Files\Git\bin
 
-4xx: Client Error
-1.	401: Unauthorized
-2.	402: Payment Required
-3.	403: Forbidden 
-4.	404: Not Found
-5.	405: Method Not Allowed
-6.	406: Not Acceptable
+Complete Project Setup:::
+1]Select Maven Project
+2]Select Git Project and give the Git URL
+3]Select, This project is parameterized
+     choice parameters:
+	Name : 
+		language
 
-for (int i = 1; i <=4; i++) {
-	//Row
-	for (int j = 1; j <=4; j++) {
-		System.out.print(j+" ");
-	}
-	System.out.println();
-}
+		Choises:
+		en_US
+		es_ES
+
+		Description: 
+		en_US for English Language
+		es_ES for Espanol Language
+		
+	Name: config
+		testng_perfecto.xml
+		testng_regression.xml
+4] Source code management:
+Git: Give the credentials and details including branch
+
+Example
+Repository URL  : https://github.com/userA/CheckerPOC.git
+Credentials : SSH private keys  [C:\Program Files (x86)\Jenkins\.ssh]
+
+Key Generation:
+Install Git,
+Open Git bash,
+Run command: ssh-keygen -t rsa -C nandykingshuk1990@example.com
+
+Add SSH public Keys into the GitHub
+Git Hub Setting for WebHook:
+
+5]Built Triggers:
+	a)GitHub Hook Triggers for Git SCM Polling:::For Automatic Built Triggerring when a Built is pushed in GitHub
+	b]Built Periodically:::For Timming scheduling
+
+6]Built:pom.xml
+	test
+	
+7]Post Built Actions:
+Publish HTML reports::
+		Indexpage: ABC.xml
+Publish TestNG XML Report:**/**/testng-results.xml
+
+Issues:
+Go to Manage Jenkins > Script Console > enter value > System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "default-src * 'unsafe-inline' 'unsafe-eval';script-src 'self' 'unsafe-inline' 'unsafe-eval'"); > Click Run 2 times... it will work
+
+
