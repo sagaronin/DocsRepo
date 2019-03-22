@@ -24,10 +24,35 @@
 1 to 20 - https://www.techbeamers.com/selenium-interview-appium-questions-and-answers/#q1
 
 For setting up adb devices we need to have the following path,
+------------------------------------------------------------
 C:\Users\kingshuk.nandy\AppData\Local\Android\Sdk\platform-tools;
 C:\Users\kingshuk.nandy\AppData\Local\Android\Sdk\tools\bin;
 
+
 Then Install Appium:
+--------------------------
 The Basic Properties Required
+
+Install via Adb command:
+-----------------------
+adb install appname
+
+
+How to get App Details:
+------------------------
+Method 1.
+Then Open the app in device,
+Then fire the command from Command Prompt
+adb shell "dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'"
+Results**com.automationtest/com.automationtest.MainActivity
+
+
+Method 2:
+aapt dump badging AppApkName.apk
+OR
+./ aapt dump badging AppApkName.apk
+
+Method 3:
+APK Info:
 
 
