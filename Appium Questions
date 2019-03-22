@@ -31,7 +31,13 @@ C:\Users\kingshuk.nandy\AppData\Local\Android\Sdk\tools\bin;
 
 Then Install Appium:
 --------------------------
-The Basic Properties Required
+The Basic Properties Required to be set in Appium
+{
+  "deviceName": "65e9e0450803",
+  "appPackage": "com.automationtest",
+  "appActivity": "com.automationtest.MainActivity",
+  "platformName": "android"
+}
 
 Install via Adb command:
 -----------------------
@@ -62,7 +68,7 @@ Add the following Jar:
 		    <version>4.1.2</version>
 		</dependency>
     
-    
+ ++++++++++++++++++++++++++++++++++++++++++   
 driver.capabilities.platformName=android
 driver.capabilities.deviceName=emulator-5554
 driver.capabilities.appPackage=com.jquiz.act
@@ -77,5 +83,20 @@ step.provider.pkg=com.acttest.steps
 remote.server=localhost
 remote.port=4723
 driver.name=appiumDriver
+++++++++++++++++++++++++++++++++++++++++++++++
+
+Normal Format:
+		DesiredCapabilities capabilities=new DesiredCapabilities();
+		capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "Appium");
+		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"Android");
+		//apabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"");
+		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"65e9e0450803");
+		capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,"com.automationtest");
+		capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,"com.automationtest.MainActivity");
+
+		AndroidDriver driver=new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
+		System.out.println("Driver Launch");
+		
+		-------------------------------------------
 
 
