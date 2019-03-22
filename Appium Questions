@@ -55,4 +55,27 @@ OR
 Method 3:
 APK Info:
 
+Add the following Jar:
+  <dependency>
+		    <groupId>io.appium</groupId>
+		    <artifactId>java-client</artifactId>
+		    <version>4.1.2</version>
+		</dependency>
+    
+    
+driver.capabilities.platformName=android
+driver.capabilities.deviceName=emulator-5554
+driver.capabilities.appPackage=com.jquiz.act
+driver.capabilities.appActivity=com.jquiz.act.StartActivity
+
+driver.capabilities.applicationName=ACT Test
+driver.capabilities.driverClass=io.appium.java_client.android.AndroidDriver
+driver.additional.capabilities = {'autoAcceptAlerts':true,'autoLaunch':true}
+
+env.baseurl=http://localhost:4723/wd/hub
+step.provider.pkg=com.acttest.steps
+remote.server=localhost
+remote.port=4723
+driver.name=appiumDriver
+
 
