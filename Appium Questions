@@ -22,4 +22,12 @@
 
 
 1 to 20 - https://www.techbeamers.com/selenium-interview-appium-questions-and-answers/#q1
-fghfhgfhg
+
+For setting up adb devices we need to have the following path,
+C:\Users\kingshuk.nandy\AppData\Local\Android\Sdk\platform-tools;
+C:\Users\kingshuk.nandy\AppData\Local\Android\Sdk\tools\bin;
+
+Then Install Appium:
+The Basic Properties Required
+
+
