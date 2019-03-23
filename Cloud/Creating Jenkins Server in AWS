@@ -1,4 +1,5 @@
 Download and Install Jenkins
+=======================================
 To download and install Jenkins:
 1. To ensure that your software packages are up to date on your instance, use the following command to perform a quick software update:
 [ec2-user ~]$ sudo yum update –y
@@ -13,3 +14,21 @@ To download and install Jenkins:
 
 Note: If any issues faced. Then install open Jre
 sudo yum install java-1.8.0-openjdk
+
+Configure Jenkins
+=======================
+Jenkins is now installed and running on your EC2 instance. To configure Jenkins:
+1. Connect to http://<your_server_public_DNS>:8080 from your favorite browser. You will be able to access Jenkins through its management interface:
+2. As prompted, enter the password found in /var/lib/jenkins/secrets/initialAdminPassword. Use the following command to display this password:
+[ec2-user ~]$ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+3. The Jenkins installation script directs you to the Customize Jenkins page. Click Install suggested plugins.
+4. Once the installation is complete, enter Administrator Credentials, click Save Credentials, and then click Start Using Jenkins
+5. On the left-hand side, click Manage Jenkins, and then clickManage Plugins.
+6. Click on the Available tab, and then enter Amazon EC2 plugin at the top right.
+7. Select the checkbox next to Amazon EC2 plugin, and then click Install without restart.
+8. Once the installation is done, click Go back to the top page.
+9. Click on Manage Jenkins, and then Configure System.
+10. Scroll all the way down to the section that says Cloud.
+11. Click Add a new cloud, and select Amazon EC2. A collection of new fields appears.
+12. Fill out all the fields. (Note: You will have to Add Credentials of the kind AWS Credentials.)
+You are now ready to use EC2 instances as Jenkins build slaves.
