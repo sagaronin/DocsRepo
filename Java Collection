@@ -1,0 +1,40 @@
+java.util-->Collection Framework
+
+If Elements numbers are fixed always go for Arrays since array is fast compare to Collection.
+
+Drawback:
+•	Array can store only one type of data-type
+•	Inserting and deleting elements in the middle of the array is difficult.
+•	Size fixed
+>No methods to process the retrieved data
+
+Q1.	What is a collection framework?
+Ans: A collection framework is a class library to handle group of objects. Collection Framework is implemented in java.util package
+A collection object or an container object is an object which can store a group of other objects.
+
+Q2.	What is a Collections?
+Ans: Collections is an Class which is present inside the java.util package.
+It contains polymorphic algorithms that operate on collections, "wrappers", which return a new collection backed by a specified collection.
+	Java Collection class supports the polymorphic algorithms that operate on collections.
+	Java Collection class throws a NullPointerException if the collections or class objects provided to them are null.
+
+Q3.	Does collection object store copies of other objects or their references?
+Ans: Collection object does not store the physical copies of other object, it simply store the references of other objects into a collection object.
+                                        
+  Collections Hierarchy:
+  ====================================================================
+                      java.util Collection<I> --> Extends------> Iterable<I>
+                                       
+                  List<I>                            Queue<I>[FIFO]             Set<I>
+     
+     ArrayList||Stack||Vector||LinkedList       LinkedList                HashSet||LinkedHashSet||TressSet(Sorted)
+     
+     
+     
+        Map<I>
+ 
+                      Sorted Map 
+ 
+ HashMap|| HashTable || TreeMap
+ =============================================================================================================
+ 
