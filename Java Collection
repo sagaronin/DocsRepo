@@ -59,3 +59,36 @@ Ans: Collection object does not store the physical copies of other object, it si
 		while (iterator.hasNext()) {
 			Object object = (Object) iterator.next();			
 		}		
+		//Enhanced For Loop
+		for(Object i:list) {
+			System.out.println(i);
+		}	
+		//Stream API using Lambda Expression-- Java 8 onwards
+		list.forEach(System.out::println);
+	
+		
+		//Working with Vector
+		Vector v=new Vector<>();
+	
+		v.size();
+		System.out.println("Size:"+v.capacity());
+		
+		List<Integer> listOther=Arrays.asList(56,24,33,25);
+		
+		List<Integer> listOtherNew=new ArrayList<Integer>() {
+			{
+				add(23);
+				add(45);
+				add(76);
+			}
+		};
+		
+		Collections.synchronizedList(new ArrayList<>());
+		Stack<Integer> stack=new Stack<Integer>();
+		stack.isEmpty();//Out=boolean/If Stack empty then True else False
+		stack.peek();//Out=Element/Returns Top Most Object without removing it
+		stack.pop();//Out=Element/pops the top most element and returns it
+		stack.push(23);//Out=Element/pushes an element on the top of the stack and returns that element
+		stack.search(45);//Out=int/Returns the position of the element from the top of the stack
+							//If object is not found then returns -1.
+	
