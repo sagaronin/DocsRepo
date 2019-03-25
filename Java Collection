@@ -38,3 +38,24 @@ Ans: Collection object does not store the physical copies of other object, it si
  HashMap|| HashTable || TreeMap
  =============================================================================================================
  
+ int a[]=new int[5];
+		
+		Object valuesOther[]=new Object[4];
+		valuesOther[0]="Kingshuk";
+		valuesOther[1]=2;
+		valuesOther[2]=4.77;
+		
+		
+		Collection values=new ArrayList<>();
+		
+		//Traversing of Arraylist
+		List list=new ArrayList<>();
+		//Conventional For Loop
+		for (int i=0;i<list.size();i++) {
+			Object object = list.get(i);		
+		}	
+		//By while loop-- Iterator is a very old Technique
+		Iterator iterator=list.iterator();		
+		while (iterator.hasNext()) {
+			Object object = (Object) iterator.next();			
+		}		
