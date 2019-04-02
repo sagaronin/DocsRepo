@@ -271,4 +271,200 @@ Examples:
  
 Note: The table must have a header row corresponding to the variables in the Scenario Outline step
 
+Scenario Outline: Successful Login with Valid Credentials
+	Given User is on Home Page
+	When User Navigate to LogIn Page
+	And User enters "<username>" and "<password>"
+	Then Message displayed Login Successfully
+Examples:
+    | username   | password |
+    | testuser_1 | Test@153 |
+    | testuser_2 | Test@153 |
+Step Details:
+Will be the same as before
+
+
+Data Tables in Cucumber:
+Data Tables in Cucumber are quite interesting and can be used in many ways. DataTables are also used to handle large amount of data. They are quite powerful but not the most intuitive as you either need to deal with a list of maps or a map of lists. Most of the people gets confused with Data tables & Scenario outline, but these two works completely differently.
+Difference between Scenario Outline & Data Table
+Scenario Outline:
+•	This uses Example keyword to define the test data for the Scenario
+•	This works for the whole test
+•	Cucumber automatically run the complete test the number of times equal to the number of data in the Test Set
+Test Data:
+•	No keyword is used to define the test data
+•	This works only for the single step, below which it is defined
+•	A separate code is needed to understand the test data and then it can be run single or multiple times but again just for the single step, not for the complete test
+
+As I said above, that the Data Tables can be used in many ways because it has provided many different methods to use. Let’s just go through few most popular methods. I will choose a simple scenario to illustrate the working of the Data Table but we will make effective use of this when we will do Cucumber Framework in the next series of this Cucumber Tutorial.
+ 
+Data Table in Cucumber Demo
+In this example, we will pass the test data using data table and handle it with using Raw() method.
+
+Scenario: Successful Login with Valid Credentials
+	Given User is on Home Page
+	When User Navigate to LogIn Page
+	And User enters Credentials to LogIn
+    | Other12 | test@123 |
+	Then Message displayed Login Successfully
+Step:
+	@When("^User enters Credentials to LogIn$")
+public void user_enters_Credentials_to_LogIn(DataTable userCredentials) throws    Throwable {
+      
+		//Write the code to handle Data Table
+		List<List<String>> data=userCredentials.raw();
+		
+
+	     //This is to get the first data of the set (First Row + First Column)
+	     driver.findElement(By.id("log")).sendKeys(data.get(0).get(0)); 
+ 
+		//This is to get the first data of the set (First Row + Second Column)
+	    driver.findElement(By.id("pwd")).sendKeys(data.get(0).get(1));
+ 
+	    driver.findElement(By.id("login")).click();
+	}
+
+The complete scenario is same as what we have done earlier. But the only difference is in this, we are not passing parameters in the step line and even we are not using Examples test data. We declared the data under the step only. So, we are using Tables as arguments to Steps.
+Maps in Data Tables
+
+Maps in Data Tables can be used if different ways. Headers can also be defined for the data tables. A same step can be executed multiple times with different set of test data using Maps.
+
+Types of Implementation:
+1.	Maps in Data Tables with Header:
+In the previous chapter of Data Tables in Cucumber,  we pass Username & Password without Header, due to which the test was not much readable. What if there will be many columns. The basic principal of BDD test is to make the Test in Business readable format, so that business users can understand it easily. Setting Header in Test data is not a difficult task in Cucumber. look at a below Scenario.
+
+Scenario: Successful Login with Valid Credentials
+	Given User is on Home Page
+	When User Navigate to LogIn Page
+	And User enters Credentials to LogIn
+	| Username   | Password |
+    | testuser_1 | Test@153 |
+	Then Message displayed Login SuccessfullyStep:
+Steps:
+@When("^User enters Credentials to LogIn$")
+	public void user_enters_testuser_and_Test(DataTable usercredentials) throws Throwable {
+
+//Write the code to handle Data Table
+List<Map<String,String>> data = usercredentials.asMaps(String.class,String.class);
+		     driver.findElement(By.id("log")).sendKeys(data.get(0).get("Username")); 
+	driver.findElement(By.id("pwd")).sendKeys(data.get(0).get("Password"));
+	driver.findElement(By.id("login")).click();
+           }
+
+2.	
+Maps in Data Tables with Multiple Test Data
+In this test we will pass Username and Password two times to the test step. So our test should enter Username & Password once, click on LogIn button and repeat the same steps again.
+
+Scenario: Successful Login with Valid Credentials
+	Given User is on Home Page
+	When User Navigate to LogIn Page
+	And User enters Credentials to LogIn
+	| Username   | Password |
+    | testuser_1 | Test@153 |
+    | testuser_2 | Test@154 |
+	Then Message displayed Login SuccessfullyStep:
+Steps:
+@When("^User enters Credentials to LogIn$")
+	public void user_enters_testuser_and_Test(DataTable usercredentials) throws Throwable {
+//Write the code to handle Data Table
+for (Map<String, String> data : usercredentials.asMaps(String.class, String.class)) {
+driver.findElement(By.id("log")).sendKeys(data.get("Username")); driver.findElement(By.id("pwd")).sendKeys(data.get("Password"));
+driver.findElement(By.id("login")).click();
+}
+
+3.	Map Data Tables to Class Objects
+Luckily there are easier ways to access your data than DataTable. For instance you can create a Class-Object and have Cucumber map the data in a table to a list of these.
+Feature file is same as the previous one
+Bean or Class Object Details:
+package beans;
+public class Credentials {
+
+	private String username;
+	private String password;
+	public String getUsername() {
+		return username;
+	}
+	public String getPassword() {
+		return password;
+	}	
+}
+@When("^User enters Credentials to LogIn$")
+	public void user_enters_testuser_and_Test(List<Credentials>  usercredentials) throws Throwable {
+//Write the code to handle Data Table
+for (Credentials credentials : usercredentials) {			
+driver.findElement(By.id("log")).sendKeys(credentials.getUsername()); 
+		  driver.findElement(By.id("pwd")).sendKeys(credentials.getPassword());
+		    driver.findElement(By.id("login")).click();
+			}		
+	}
+
+Cucumber Hooks:
+Cucumber Tags:
+	What are cucumber Tags?
+
+Let’s say you have got many different feature files which cover all the different functionality of the application. Now there can be certain situation in the project where you like to execute just a SmokeTests or End2EndTests or may be RegressionTests. One approach is that you start creating new feature files with the name of the type like SmokeTests.features or End2EndTests.feature and copy paste your existing tests in the same. But this would make the project filthy and would require more maintenance in future. So how to manage execution in such cases?
+For this, Cucumber has already provided a way to organize your scenario execution by using tags in feature file. We can define each scenario with a useful tag. Later, in the runner file, we can decide which specific tag (and so as the scenario(s)) we want Cucumber to execute. Tag starts with “@”. After “@” you can have any relevant text to define your tag like @SmokeTests just above the scenarios you like to mark. Then to target these tagged scenarios just specify the tags names in the CucumberOptions as tags = {“@SmokeTests”}.
+Tagging not just specifically works with Scenarios, it also works with Features. Means you can also tag your features files. Any tag that exists on a Feature will be inherited by Scenario, Scenario Outline or Examples.
+
+	How to run Cucumber Tests in groups using Cucumber Tags?
+Let’s understand this with an example. Below is a excel sheet containing a list of scenarios of a single feature
+
+Things to Note:
+•	Few scenarios are part of Smoke Test, Regression Test and End2End Test.
+•	Few scenarios are part of two or more Test Types. For example the first test is considered as Smoke as well as Regression.
+•	Few scenarios are not at all tagged
+•	Last scenario of Payment Declined, it is a single scenario but has five different test data. So this will be considered as five different scenarios. 
+Feature file will look like this:
+	Logically ANDing and ORing Tags
+Requirements are complicated, it will not always simple like executing a single tag. It can be complicated like executing scenarios which are tagged either as @SmokeTest or @RegressionTest. It can also be like executing scenarios which are tagged both as @SmokeTest and @RegressionTest. Cucumber tagging gives us the capability to choose what we want with the help of ANDing and ORing.
+
+Execute all tests tagged as @SmokeTest OR @RegressionTest
+Tags which are comma separated are ORed.
+ 
+Note: OR means scenarios which are tagged either as @SmokeTest OR @RegressionTest.
+
+Execute all tests tagged as @SmokeTest AND @RegressionTest
+Tags which are passed in separate quotes are ANDed
+ 
+Note: There are only two scenarios in our feature file which have both tags together.
+
+	How to Ignore Cucumber Tests
+This is again a good feature of Cucumber Tags that you can even skip tests in the group execution. Special Character ~ is used to skip the tags. This also works both for Scenarios and Features. And this can also works in conjunction with AND or OR. 
+
+Execute all tests of the feature tagged as @FunctionalTests but skip scenarios tagged as @SmokeTest 
+ 
+Note: This is AND condition, which means all the scenario tagged as @FunctionalTest but not @SmokeTest. So total tests are 15 and smoke tests are 6, so it ran just 9 tests.
+
+Execute all tests which are not at all tagged in all the Features
+ 
+Execute all tests which are not at all tagged in Single Feature
+ 
+
+
+
+
+ 
+Cucumber Hooks:
+	What are Cucumber Hooks?
+Cucumber supports hooks, which are blocks of code that run before or after each scenario. You can define them anywhere in your project or step definition layers, using the methods @Before and @After. Cucumber Hooks allows us to better manage the code workflow and helps us to reduce the code redundancy. We can say that it is an unseen step, which allows us to perform our scenarios or tests.
+
+	Why Cucumber Hooks?
+In the world of testing, you must have encountered the situations where you need to perform the prerequisite steps before testing any test scenario. This prerequisite can be anything from:
+	Starting a webdriver
+	Setting up DB connections
+	Setting up test data
+	Setting up browser cookies
+	Navigating to certain page
+	or anything before the test
+In the same way there are always after steps as well of the tests like:
+	Killing the webdriver
+	Closing DB connections
+	Clearing the test data
+	Clearing browser cookies
+	Logging out from the application
+	Printing reports or logs
+	Taking screenshots on error
+	or anything after the test
+To handle these kind of situations, cucumber hooks are the best choice to use. Unlike TestNG Annotations, cucumber supports only two hooks (Before & After) which works at the start and the end of the test scenario. As the name suggests, @before hook gets executed well before any other test scenario, and @after hook gets executed after executing the scenario.
+
 
