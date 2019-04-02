@@ -190,4 +190,11 @@ public static void swipeToNativeElement(AppiumDriver driver, WebElement elementS
 		driver.swipe(startx, starty, endx, endy, duration);
 		}}
 
+--------------------------------------------------------------------------------------
+driver.hideKeyboard();
+waitTillSpinnerGone()
 
+	public static void clickUsingjavaScript(QAFWebElement element) {
+		JavascriptExecutor js = new WebDriverTestBase().getDriver();
+		js.executeScript("arguments[0].click();", element);
+	}
