@@ -386,6 +386,37 @@ charsequence - any string value representing the sequence of keystrokes to be se
 
 --------------------------------------------------------------------------------------------------------------------------
 
+public static void clickAndHold(WebElement element) {
+		Actions actionsBuilder=new Actions(driver).clickAndHold(element);
+		Action action=actionsBuilder.build();
+		action.perform();
+	}
+	public static void pressKey(WebElement element) {
+		Actions actionsBuilder=new Actions(driver).keyDown(element, Keys.SPACE);
+		Action action=actionsBuilder.build();
+		action.perform();	
+}
+
+Select Class in Selenium
+Select select=new org.openqa.selenium.support.ui.Select(element);
+select.getFirstSelectedOption(); // To get Current selected value
+select.selectByIndex(1);//selecting by index
+select.selectByValue("Text");//Select By Value		select.selectByVisibleText("I am");
+
+Working with Multiple windows
+public void switchToActualWindow(WebElement element) {
+		String mainWindow=driver.getWindowHandle();
+		Set<String> allwindows=driver.getWindowHandles();
+		Iterator<String> iterator=allwindows.iterator()	;
+		while (iterator.hasNext()) {
+			String childWindow = (String) iterator.next();
+			driver.switchTo().window(childWindow);
+			if(mainWindow.equalsIgnoreCase(childWindow)) {
+				break;
+			}			
+		}
+	}
+ 
 
 
 
