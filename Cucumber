@@ -1,4 +1,5 @@
 What is cucumber?
+=================
 Cucumber is a testing framework which supports Behavior Driven Development (BDD). It lets us define application behavior in plain meaningful English text using a simple grammar defined by a language called Gherkin. Cucumber itself is written in Ruby, but it can be used to “test” code written in Ruby or other languages including but not limited to Java, C# and Python.
 
 Programming Methodologies:
@@ -7,6 +8,7 @@ Programming Methodologies:
 •	Gherkin – Business Driven Development
 
 Keywords:
+=========
 Now moving forward, we have just defined a test. You will notice colored part of the tests (Feature, Scenario, Given, When, And and Then). These are keywords defined by Gherkin. Gherkin has more keywords and we will discuss those in following tutorials. But to start off we can quickly explain some of the keywords in one line. Note this is not complete listing of Keywords:
 Feature: Defines what feature you will be testing in the tests below
 Given: Tells the pre-condition of the test
@@ -14,11 +16,18 @@ And: Defines additional conditions of the test
 Then: States the post condition. You can say that it is expected result of the test.
 
 Gherkin
+========
 A language above is called Gherkin and it implements the principles of Business readable domain specific language(BRDSL). Domain specific language gives you the ability to describe your application behavior without getting into details of implementation. What does that mean? If we go back to our tutorial in TDD we saw that we wrote test code before writing any application code. In a way we described what is the expected behavior of our application in terms of tests. On TDD those tests were pure Java tests, in your case those might be a C++ or C# tests. But the basic idea is that those are core technical tests.
 If we now come back to BDD/BRDSL we will see that we are able to describe tests in a more readable format. In the above test it’s quite clear and evident, just by reading, what test would do. At the same time of being a test it also documents the behavior of application. This is the true power of BDD/BRDSL and it will become the power of cucumber eventually because cucumber works on the same principles.
 
-JUnit Test Runner Class 
-Now that we have defined the test its time to run our test. But before we do that we have to add a class for running our tests. Cucumber uses Junit framework to run. If you are not familiar with JUnit read our tutorials here. As Cucumber uses Junit we need to have a Test Runner class. This class will use the Junit annotation @RunWith(), which tells Junit what is the test runner class. It more like a starting point for Junit to start executing your tests. In the src folder create a class called TestRunner. 
+JUnit Test Runner Class
+=========================
+Now that we have defined the test its time to run our test. 
+But before we do that we have to add a class for running our tests. 
+Cucumber uses Junit framework to run. If you are not familiar with JUnit read our tutorials here. 
+As Cucumber uses Junit we need to have a Test Runner class. This class will use the Junit annotation @RunWith(), 
+which tells Junit what is the test runner class. It more like a starting point for Junit to start executing your tests. 
+In the src folder create a class called TestRunner. 
 
 package cucumberTest;
 import org.junit.runner.RunWith;
@@ -35,9 +44,14 @@ public class TestRunner {
 }
 
 Import Statements
+==================
 @RunWithannotation tells JUnit that tests should run using Cucumber class present in ‘Cucumber.api.junit‘ package
+
 @CucumberOptions annotation. This annotation tells Cucumber a lot of things like where to look for feature files, what reporting system to use and some other things also. But as of now in the above test we have just told it for the Feature file folder.
+
+
 Gherkin Keywords
+=======================
 Gherkin is not necessarily used to write automated tests. Gherkin is primarily used to write structured tests which can later be used as project documentation. The property of being structured gives us the ability to automate them. This automation is done by Cucumber/SpecFlow. In the Gherkin – Business Driven Development we saw a simple Gherkin Keyword test and why Gherkin is important to use.
 Note: Cucumber/SpecFlow understands Gherkin hence we can say that this is a Cucumber/SpecFlow test.
  
@@ -59,7 +73,8 @@ You will quickly notice that there are some colored words. These words are Gherk
 •	And
 •	But
 •	* 
-Feature: Keyword
+
+Feature: Keyword----------
 Each Gherkin file begins with a Feature keyword. Feature defines the logical test functionality you will test in this feature file. For e.g. if you are testing a payment gateway your Feature will become Payment Gateway or if you are testing the LogIn functionality then the Feature will become Login. The idea of having a feature file is to put down a summary of what you will be testing. This will serve as the documentation for your tests as well as a good point to start for a new team member. Note that a feature keyword is present at the starting of the feature file.
 Feature: LogIn Action Test
 Or
@@ -72,7 +87,7 @@ Notice that whatever comes after the Feature: keyword, will be considered as the
 Note: Description is not a keyword of Gherkin.
 Take a look at the example of Cucumber Feature file and SpecFlow Feature file
  
-Background: Keyword
+Background: Keyword---------------
 Background keyword is used to define steps which are common to all the tests in the feature file. For example to purchase a product, you need to do following steps:
 •	Navigate to Home Page
 •	Click on the LogIn link
@@ -88,7 +103,7 @@ When Add the first laptop that appears in the search result to the basket
 Then User basket should display with 1 item
 Take a look at the example of Cucumber Background
  
-Scenario: Keyword
+Scenario: Keyword----------------
 Each Feature will contain some number of tests to test the feature. Each test is called a Scenario and is described using the Scenario: keyword.
 Scenario: Search a product and add the first result/product to the User basket
 Or
@@ -97,18 +112,21 @@ A scenario is equivalent to a test in our regular development process. Each scen
 •	Precondition to the test, which represent with (Given) keyword
 •	Test step execution, which represent with (When) keyword
 •	Verification of the output with expected result, which represent with (Then)
-Given Keyword
+
+Given Keyword----------------------------
 Given defines a precondition to the test. For e.g. In shopping website, assume that the LogIn page link is only present on the Home Page, so the precondition for clicking the LogIn link is that the user is at the Home Page. If user is not at the Home Page, user would not be able to enter Username & Password. This precondition can be expressed in Gherkin like this:
 Scenario: Successful LogIn with Valid Credentials
      Given User is on Home Page
      When User Navigate to LogIn Page
-When Keyword
+
+When Keyword------------------------------
 When keyword defines the test action that will be executed. By test action we mean the user input action.
 Scenario: Successful LogIn with Valid Credentials
      Given User is on Home Page
      When User Navigate to LogIn Page  
 Here user is performing some action using When keyword, clicking on the LogIn link. We can see that when defines the action taken by the user. It’s the event that will cause the actual change in state of the application.
-Then Keyword
+
+Then Keyword----------------------------------------
 Then keyword defines the Outcome of previous steps. We can understand it best by looking at the test above and adding a Then step there.
 Feature: LogIn Action Test
 Description: This feature will test a LogIn and LogOut functionality
@@ -118,7 +136,8 @@ Scenario: Successful Login with Valid Credentials
      And User enters UserName and Password
      Then Message displayed LogIn Successfully
 Here we can see that Then is the outcome of the steps above. The reader of this test would easily be able to relate to Then step and would understand that when the above conditions are fulfilled then the Then step will be executed. 
-And Keyword
+
+And Keyword-----------------------------------------------------
 And keyword is used to add conditions to your steps. Let’s look at it by modifying our example a little
 Feature: LogIn Action Test
 Description: This feature will test a LogIn and LogOut functionality
@@ -140,7 +159,7 @@ Scenario: Successful Login with Valid Credentials
      And LogOut Link displayed
 Here you would see that And is being used to add more details to the Given step, it’s simply adding more conditions. We have just added three conditions. Use it when you have specified more than one condition. And is used to add more conditions to Given, When and Then statements.
 
-But Keyword
+But Keyword----------------------------
 But keyword is used to add negative type comments. It is not a hard & fast rule to use but only for negative conditions. It makes sense to use But when you will try to add a condition which is opposite to the premise your test is trying to set. Take a look at the example below:
 Feature: LogIn Action Test
 Description: This feature will test a LogIn and LogOut functionality
@@ -162,7 +181,7 @@ Scenario: Successful Login with Valid Credentials
      And User enters UserName and Password
      Then Message displayed Login Successfully
 
-Using * Keyword
+Using * Keyword--------------------------------------------
 Feature: LogIn Action Test
 Description: This feature will test a LogIn and LogOut functionality
 Scenario: Successful Login with Valid Credentials
@@ -170,17 +189,27 @@ Scenario: Successful Login with Valid Credentials
      * User Navigate to LogIn Page
      * User enters UserName and Password
      * Message displayed Login Successfully
+
+
+
 Step Definition?
+=================
 The next target is to test or run the feature file and in order to test the feature file, we need to write the implementation or step definition for each step in the feature file in java. When Cucumber executes a Step in a Scenario it will look for a matching Step Definition to execute.
+
 What is Step Definition?
+========================
 A Step Definition is a small piece of code with a pattern attached to it or in other words a Step Definition is a java method in a class with an annotation above it. An annotation followed by the pattern is used to link the Step Definition to all the matching Steps, and the code is what Cucumber will execute when it sees a Gherkin Step. Cucumber finds the Step Definition file with the help of Glue code in Cucumber Options. We will cover different Cucumber Options in next chapter.
 
 Cucumber Options
+======================
 So far in the series of Cucumber tutorial we have covered Feature files, Gherkins, Step Definitions, Annotations, Test Runner Class and many other things. There is no doubt that you cannot set up BDD framework until you know all the concepts but there are still few more areas which are very important to know in the life of Cucumber Automation such as Cucumber Options, Regular Expressions, Page Object factory and few others. Let’s start with Cucumber Options.
+
 What is Cucumber Options ?
+=============================
 In layman language @CucumberOptions are like property file or settings for your test. Basically @CucumberOptions enables us to do all the things that we could have done if we have used cucumber command line. This is very helpful and of utmost importance if we are using IDE such eclipse only to execute our project. You must have noticed that we set few options in the ‘TestRunner’ class in the previous chapter.
 
 TestRunner Class
+-----------------
 package cucumberTest;
 import org.junit.runner.RunWith;
 import cucumber.api.CucumberOptions;
@@ -194,26 +223,29 @@ public class TestRunner {
 
 }
 So, in the above example we have just set two different Cucumber Options. One is for Feature File and other is for Step Definition file. We will talk about it in detail now but with this we can say that @CucumberOptions are used to set some specific properties for the Cucumber test.
-Following Main Options are available in Cucumber:
 
-Dry Run
+
+Following Main Options are available in Cucumber:
+=======================================================
+Dry Run-------------------
 dryRun option can either set as true or false. If it is set as true, it means that Cucumber will only checks that every Step mentioned in the Feature File have corresponding code written in Step Definition file or not. So in case any of the function is missed in the Step Definition for any Step in Feature File, it will give us the message. For practice just add the code ‘dryRun = true‘ in TestRunnerclass:
 
-Monochrome
+Monochrome-------------------
 This option can either set as true or false. If it is set as true, it means that the console output for the Cucumber test are much more readable. And if it is set as false, then the console output is not as readable as it should be. For practice just add the code ‘monochrome = true‘ in TestRunner class:
 
-Features
+Features-------------------
 Features Options helps Cucumber to locate the Feature file in the project folder structure. You must have notices that we have been specifying the Feature Option in the TestRunner class since the first chapter. All we need to do is to specify the folder path and Cucumber will automatically find all the ‘.features‘ extension files in the folder. It can be specified like:
 features = “Feature“
 Or if the Feature file is in the deep folder structure 
 features = “src/test/features“
 
-Glue
+Glue-------------------
 It is almost the same think as Features Option, but the only difference is that it helps Cucumber to locate the Step Definition file. Whenever Cucumber encounters a Step, it looks for a Step Definition inside all the files present in the folder mentioned in Glue Option. It can be specified like:
 glue = “stepDefinition“
 Or if the Step Definition file is in the deep folder structure 
 glue = “src/test/stepDeinition“
-Format
+
+Format-------------------------
 Format Option is used to specify different formatting options for the output reports. Various options that can be used as for-matters are:
  
 Pretty: Prints the Gherkin source with additional colors and stack traces for errors. Use below code:
@@ -229,14 +261,17 @@ JUnit: This report generates XML files just like Apache Ant’s JUnit report tas
 format = { “junit:Folder_Name/cucumber.xml“}
  
 Data Driven Testing in Cucumber
+=======================================
 Most commercial automated software tools on the market support some sort of Data Driven Testing, which allows to automatically run a test case multiple times with different input and validation values. As Selenium WebDriver is more an automated testing framework than a ready-to-use tool. It takes extra efforts to support data driven testing in automated tests.
 This is a very often requirement in any automated test to pass data or to use same test again with different data set. And the good part is that the Cucumber inherently supports Data Driven Testing using Scenario Outline. There are different ways to use the data insertion with in the Cucumber and outside the Cucumber with external files.
 
 Scenario Outline – This is used to run the same scenario for 2 or more different set of test data. E.g. In our scenario, if you want to register another user you can data drive the same scenario twice.
 Examples – All scenario outlines must be followed with the Examples section. This contains the data that must be passed on to the scenario.
 
-Various ways of Data Driven
-1]	Parameterizing without Example Keyword
+Various ways of Data Driven:
+********************************
+1]	Parameterizing without Example Keyword:=================
+
 Now the task is to Parameterizing the UserName and Password. 
 
 Scenario: Successful Login with Valid Credentials
@@ -255,7 +290,7 @@ public void user_enters_UserName_and_Password(String username, String password) 
 
 
 
-2]	Data Driven Testing Using Examples Keyword
+2]	Data Driven Testing Using Examples Keyword:=========================================
  Cucumber inherently supports Data Driven testing using the Scenario Outline and Examples section. It is with these keywords that Cucumber allows for easy Data Driven testing to be completed where no changes need to be made to the Java file. In this tutorial we learn, How to Implement Scenario Outline in Data Driven testing using Examples Keyword?
 Example keyword can only be used with the Scenario Outline Keyword.
 
@@ -285,8 +320,10 @@ Will be the same as before
 
 
 Data Tables in Cucumber:
+============================
 Data Tables in Cucumber are quite interesting and can be used in many ways. DataTables are also used to handle large amount of data. They are quite powerful but not the most intuitive as you either need to deal with a list of maps or a map of lists. Most of the people gets confused with Data tables & Scenario outline, but these two works completely differently.
 Difference between Scenario Outline & Data Table
+-------------------------------------------------
 Scenario Outline:
 •	This uses Example keyword to define the test data for the Scenario
 •	This works for the whole test
@@ -298,7 +335,7 @@ Test Data:
 
 As I said above, that the Data Tables can be used in many ways because it has provided many different methods to use. Let’s just go through few most popular methods. I will choose a simple scenario to illustrate the working of the Data Table but we will make effective use of this when we will do Cucumber Framework in the next series of this Cucumber Tutorial.
  
-Data Table in Cucumber Demo
+Data Table in Cucumber Demo:================
 In this example, we will pass the test data using data table and handle it with using Raw() method.
 
 Scenario: Successful Login with Valid Credentials
@@ -325,12 +362,14 @@ public void user_enters_Credentials_to_LogIn(DataTable userCredentials) throws  
 	}
 
 The complete scenario is same as what we have done earlier. But the only difference is in this, we are not passing parameters in the step line and even we are not using Examples test data. We declared the data under the step only. So, we are using Tables as arguments to Steps.
-Maps in Data Tables
+Maps in Data Tables:
+==========================
 
 Maps in Data Tables can be used if different ways. Headers can also be defined for the data tables. A same step can be executed multiple times with different set of test data using Maps.
 
-Types of Implementation:
+Types of Implementation:====
 1.	Maps in Data Tables with Header:
+-----------------------------------------
 In the previous chapter of Data Tables in Cucumber,  we pass Username & Password without Header, due to which the test was not much readable. What if there will be many columns. The basic principal of BDD test is to make the Test in Business readable format, so that business users can understand it easily. Setting Header in Test data is not a difficult task in Cucumber. look at a below Scenario.
 
 Scenario: Successful Login with Valid Credentials
@@ -353,6 +392,7 @@ List<Map<String,String>> data = usercredentials.asMaps(String.class,String.class
 
 2.	
 Maps in Data Tables with Multiple Test Data
+-----------------------------------------------
 In this test we will pass Username and Password two times to the test step. So our test should enter Username & Password once, click on LogIn button and repeat the same steps again.
 
 Scenario: Successful Login with Valid Credentials
@@ -373,6 +413,7 @@ driver.findElement(By.id("login")).click();
 }
 
 3.	Map Data Tables to Class Objects
+--------------------------------------------------
 Luckily there are easier ways to access your data than DataTable. For instance you can create a Class-Object and have Cucumber map the data in a table to a list of these.
 Feature file is same as the previous one
 Bean or Class Object Details:
@@ -399,6 +440,7 @@ driver.findElement(By.id("log")).sendKeys(credentials.getUsername());
 	}
 
 Cucumber Hooks:
+=================
 Cucumber Tags:
 	What are cucumber Tags?
 
