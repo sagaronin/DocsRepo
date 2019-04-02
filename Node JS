@@ -415,3 +415,156 @@ Scan it with a scanner.
 
 Launching Hello world Web server:
 ======================================
+06_helloWorldWS.js
+const http = require("http");
+const host="localhost";
+const port=3000;
+
+var server=http.createServer(function (request, response) {
+   response.writeHead(200, {'Content-Type': 'text/plain'});
+   response.end('Hello World............NodeJs server...........');
+}).listen(port,host,function(){
+ console.log('Server running at http://localhost:3000/');   
+});
+
+Creating A custom Node Project With all specification:
+=========================================================
+	Create a new Folder, 02_node-app-custom-project-qrImage
+	Then Command: npm init  [Prior npm node package manager has to be there]
+Add all the project specifications.
+
+	Install the required package by the Command, npm install[Details of the command: https://docs.npmjs.com/cli/install ] npm install qr-image -D[Installed as development dependencies]
+	npm install By default will install all modules listed as dependencies in package.json
+	Then execute the code,
+Index.js
+
+
+var qr=require('qr-image');
+var fs=require('fs');
+
+var code=qr.image('http://115.112.141.37:8080/',{type : 'png'});
+
+    var output=fs.createWriteStream('generatedQrcodeofJenkins.png');
+    code.pipe(output);
+
+QR code of the URL will be generated.
+
+Protractor:
+=========================================================
+Suite Block
+Jasmine is a testing framework for JavaScript. Suite is the basic building block of Jasmine framework. The collection of similar type test cases written for a specific file or function is known as one suite. It contains two other blocks, one is “Describe()” and another one is “It()”.
+One Suite block can have only two parameters, one “name of that suite”and another “Function declaration” that actually makes a call to our unit functionality that is to be tested.
+Jasmine Framework:
+Q1.	What is Jasmine?
+Ans: Jasmine is a behavior-driven development framework for testing JavaScript code. It does not depend on any other JavaScript frameworks. It does not require a DOM. And it has a clean, obvious syntax so that you can easily write tests.
+Official Link: https://jasmine.github.io/
+Very Good official Docs :https://jasmine.github.io/2.1/introduction
+Video Tutorials: https://www.youtube.com/watch?v=Ac2sBrkSK-c&list=PL_noPv5wmuO9op-OQ22SbHcqFGGHA6iIZ
+Project Jasmine:
+•	Create a directory 04_Jasmine_Basics and switch to it
+•	npm install jasmine -g
+•	Then jasmine init   a spec folder gets created[And the Jasmine basically looks for the spec folder]
+•	Write all the tests inside the spec folder.
+
+describe() Block:
+Suite is the basic building block of Jasmine framework. The collection of similar type test cases written for a specific file or function is known as one suite.
+A test suite begins with a call to the global Jasmine function describe with two parameters: a string and a function. The string is a name or title for a spec suite - usually what is being tested. The function is a block of code that implements the suite.
+
+it() Block :
+Specs are defined by calling the global Jasmine function it, which, like describe takes a string and a function. The string is the title of the spec and the function is the spec, or test. A spec contains one or more expectations that test the state of the code. An expectation in Jasmine is an assertion that is either true or false. A spec with all true expectations is a passing spec. A spec with one or more false expectations is a failing spec.
+
+Expectations:
+Jasmine has built in checks call Expectations.
+Expectations are built with the function expect which takes a value, called the actual. It is chained with a Matcher function, which takes the expected value.
+
+
+Integrating reports in protractor: https://www.npmjs.com/package/protractor-jasmine2-html-reporter
+Data provider: https://moduscreate.com/blog/protractor-and-jasmine-data-provider-write-once-test-many/
+
+Various TimeOut issues in protractor:
+[https://github.com/angular/protractor/blob/master/docs/timeouts.md#angular]
+Timeouts
+Because WebDriver tests are asynchronous and involve many components, there are several reasons why a timeout could occur in a Protractor test.
+
+Timeouts from Protractor
+Waiting for Page to Load
+When navigating to a new page using browser.get, Protractor waits for the page to be loaded and the new URL to appear before continuing.
+•	Looks like: an error in your test results - Error: Timed out waiting for page to load after 10000ms
+•	Default timeout: 10 seconds
+•	How to change: To change globally, add getPageTimeout: timeout_in_millis to your Protractor configuration file. For an individual call to get, pass an additional parameter: browser.get(address, timeout_in_millis)
+Waiting for Angular
+Before performing any action, Protractor waits until there are no pending asynchronous tasks in your Angular application. This means that all timeouts and http requests are finished.
+•	Looks like: an error in your test results - Timed out waiting for asynchronous Angular tasks to finish after 11 seconds.
+•	Default timeout: 11 seconds
+•	How to change: Add allScriptsTimeout: timeout_in_millis to your Protractor configuration file.
+You may also need to fix this problem with a change to your application.
+AngularJS
+If your AngularJS application continuously polls $timeout or $http, Protractor will wait indefinitely and time out. You should use the $interval for anything that polls continuously (introduced in Angular 1.2rc3).
+Angular
+For Angular apps, Protractor will wait until the Angular Zone stabilizes. This means long running async operations will block your test from continuing. To work around this, run these tasks outside the Angular zone. For example:
+this.ngZone.runOutsideAngular(() => {
+  setTimeout(() => {
+    // Changes here will not propagate into your view.
+    this.ngZone.run(() => {
+      // Run inside the ngZone to trigger change detection.
+    });
+  }, REALLY_LONG_DELAY);
+});
+As an alternative to either of these options, you could disable waiting for Angular, see below.
+Waiting for Angular on Page Load
+Protractor waits for the angular variable to be present when loading a new page.
+•	Looks like: an error in your test results - Angular could not be found on the page: retries looking for angular exceeded
+•	Default timeout: 10 seconds
+•	How to change: To change globally, add getPageTimeout: timeout_in_millis to your Protractor configuration file. For an individual call to get, pass an additional parameter: browser.get(address, timeout_in_millis)
+How to disable waiting for Angular
+If you need to navigate to a page which does not use Angular, you can turn off waiting for Angular by settingbrowser.waitForAngularEnabled(false). For example:
+browser.waitForAngularEnabled(false);
+browser.get('/non-angular-login-page.html');
+
+element(by.id('username')).sendKeys('Jane');
+element(by.id('password')).sendKeys('1234');
+element(by.id('clickme')).click();
+
+browser.waitForAngularEnabled(true);
+browser.get('/page-containing-angular.html');
+Timeouts from WebDriver
+Asynchronous Script Timeout
+Sets the amount of time to wait for an asynchronous script to finish execution before throwing an error.
+•	Looks like: an error in your test results - ScriptTimeoutError: asynchronous script timeout: result was not received in 11 seconds
+•	Default timeout: 11 seconds
+•	How to change: Add allScriptsTimeout: timeout_in_millis to your Protractor configuration file.
+Timeouts from Jasmine
+Spec Timeout
+If a spec (an 'it' block) takes longer than the Jasmine timeout for any reason, it will fail.
+•	Looks like: a failure in your test results - timeout: timed out after 30000 msec waiting for spec to complete
+•	Default timeout: 30 seconds
+•	How to change: To change for all specs, add jasmineNodeOpts: {defaultTimeoutInterval: timeout_in_millis} to your Protractor configuration file. To change for one individual spec, pass a third parameter to it: it(description, testFn, timeout_in_millis).
+Timeouts from Sauce Labs
+If you are using Sauce Labs, there are a couple additional ways your test can time out. See Sauce Labs Timeouts Documentation for more information.
+Maximum Test Duration
+Sauce Labs limits the maximum total duration for a test.
+•	Looks like: Test exceeded maximum duration after 1800 seconds
+•	Default timeout: 30 minutes
+•	How to change: Edit the "max-duration" key in the capabilities object.
+Command Timeout
+As a safety measure to prevent Selenium crashes from making your tests run indefinitely, Sauce limits how long Selenium can take to run a command in browsers. This is set to 300 seconds by default.
+•	Looks like: Selenium took too long to run your command
+•	Default timeout: 300 seconds
+•	How to change: Edit the "command-timeout" key in the capabilities object.
+Idle Timeout
+As a safety measure to prevent tests from running too long after something has gone wrong, Sauce limits how long a browser can wait for a test to send a new command. This is set to 90 seconds by default. You can adjust this limit on a per-job basis.
+•	Looks like: Test did not see a new command for 90 seconds. Timing out.
+•	Default timeout: 90 seconds
+•	How to change: Edit the "idle-duration" key in the capabilities object.
+
+
+Working with Excel:
+https://www.npmjs.com/package/exceljs
+
+>npm install exceljs --dev-save
+
+
+
+
+
+
