@@ -416,7 +416,151 @@ public void switchToActualWindow(WebElement element) {
 			}			
 		}
 	}
+ --------------------------------------------------------------------------------------
+ Frameworks
+What is Selenium Framework?
+Selenium Framework is a code structure that helps to make code maintenance easy. Without frameworks, we will place the “code” as well as “data” in the same place which is neither re-usable nor readable. Using Frameworks, produce beneficial outcomes like increased code re-usage, higher portability, reduced script maintenance cost, higher code readability, etc.
+Types:
+	Data-Driven
+	Keyword- Driven
+	Hybrid
+	Page Object Model
+Data-Driven:
+In data driven framework all of our test data is generated from some external files like Excel, CSV, XML or some database table.
+To read and write data into excel, we have the POI and JXL.
+
+Basic Code:
+public static String sheetName;
+
+	public POIDemo(String fileName, String sheetName) {
+		this.filePath = System.getProperty("user.dir") + "\\files\\" + fileName;
+		this.sheetName = sheetName;
+	}
+	public Object readFile(int rowNum, int cellNum) {
+		Object outPut = null;
+		try {
+			File file = new File(filePath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			HSSFWorkbook workbook = new HSSFWorkbook(fileInputStream);
+			HSSFSheet sheet = workbook.getSheet(sheetName);
+			HSSFRow row = sheet.getRow(rowNum);
+			HSSFCell cell = row.getCell(cellNum);
+			if (cell.getCellType() == 1) {
+				outPut = cell.getStringCellValue();
+			} else if (cell.getCellType() == 0) {
+				outPut = cell.getNumericCellValue();
+			}
+			System.out.println(outPut);
+		} catch (Exception e) {
+			System.out.println("Exception:" + e.getMessage());
+		}
+		return outPut;
+	}
+	
+	public boolean writeFile(String data, int rowNum, int cellNum) {
+		try {
+			File file = new File(filePath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			HSSFWorkbook workbook = new HSSFWorkbook(fileInputStream);
+			HSSFSheet sheet = workbook.getSheet(sheetName);
+			HSSFRow row = sheet.createRow(rowNum);
+			HSSFCell cell = row.createCell(cellNum);
+			cell.setCellValue(data);
+			fileInputStream.close();
+			FileOutputStream fileOutputStream=new FileOutputStream(filePath);
+			workbook.write(fileOutputStream);
+			fileOutputStream.close();
+			return true;
+		} catch (Exception e) {
+			System.out.println("Exception:" + e.getMessage());
+			return false;
+		}
+	}
+	
+	public static void main(String[] args) {
+		POIDemo demo = new POIDemo("Details.xls", "userDetails");
+		System.out.println("Value:" + demo.readFile(2, 2));
+		demo.writeFile("I am in town", 4, 4);
+		
+	}
+}
+----------------------------------------------
+Keyword 
+Keyword Driven:
+In keyword driven test framework, all the operations and instructions are written in some external file like Excel worksheet. Here is how the complete framework looks like
+  
+Hybrid :
  
+--------------------------------------------
+Page Object Model:
+In the Page Object Model entire application is splitted into Pages and Comonents.
+public class HomePage  {
+	public static WebDriver driver=new ChromeDriver();
+
+	@FindBy(xpath="//input[@id='save']")
+	private WebElement homeTab;
+
+	public WebElement getHomeTab() {
+		return homeTab;
+	}
+public HomePage() {
+		PageFactory.initElements(driver, HomePage.class);
+	}
+	
+	public void clickOnHomeTab() {
+		getHomeTab().click();
+	}
+}
+
+-------------------------------------------------------
+Exceptions:
+ ConnectionClosedException	 This exception takes place when there is a disconnection in the driver.
+ ElementClickInterceptedException	 The command could not be completed as the element receiving the events is concealing the element which was requested clicked.
+ ElementNotInteractableException	 This Selenium exception is thrown when an element is presented in the DOM but it is impossible to interact with such element.
+ ElementNotSelectableException	 This Selenium exception is thrown when an element is presented in the DOM but you can be able to select. Hence, it is impossible to interact with.
+ ElementNotVisibleException	 This type of Selenium exception takes place when existing element in DOM has a feature set as hidden. In this situation, elements are there, but you can not see and interact with the WebDriver.
+ ErrorHandler.UnknownServerException	 Exception is used as a placeholder if the server returns an error without a stack trace.
+ ErrorInResponseException	 This exception is thrown when a fault has occurred on the server side. You can see it happens when interacting with the Firefox extension or the remote driver server.
+ ImeActivationFailedException	 This exception occurs when IME engine activation has failed.
+ ImeNotAvailableException	 This exception takes place when IME support is unavailable.
+ InsecureCertificateException	 Navigation made the user agent to hit a certificate warning, which is caused by an invalid or expired TLS certificate.
+ InvalidArgumentException	 This Selenium exception is thrown if an argument does not belong to the expected type.
+ InvalidCookieDomainException	 This happens when you try to add a cookie under a different domain rather than the current URL.
+ InvalidCoordinatesException	 This happens if the coordinates offered to an interacting operation are not valid.
+ InvalidElementStateException	 This Selenium exception occurs if a command cannot be finished as the element is invalid.
+ InvalidSessionIdException	 Takes place when the given session ID is not included in the list of active sessions, which means the session does not exist or is inactive either.
+ InvalidSwitchToTargetException	 Happens if frame or window target to be switched does not exist.
+ JavascriptException	 This problem happens when executing JavaScript supplied by the user.
+ JsonException	 Happens when you afford to get the session capabilities where the session is not created.
+ MoveTargetOutOfBoundsException	 Takes place if the target provided to the ActionChains move() methodology is not valid. For exampleout of document.
+ NoAlertPresentException	 Happens when you switch to no presented alert.
+ NoSuchAttributeException	 Occurs when the attribute of element could not be found.
+ NoSuchContextException	 Happens in mobile device testing and is thrown by ContextAware.
+ NoSuchCookieException	 This exception is thrown if there is no cookie matching with the given path name found amongst the associated cookies of the current browsing context’s active document.
+ NoSuchElementException	 Happens if an element could not be found.
+ NoSuchFrameException	 Takes place if frame target to be switch does not exist.
+ NoSuchWindowException	 Occurs if window target to be switch does not exist.
+ NotFoundException	 This exception is subclass of WebDriverException. It happens when an element on the DOM does not exist.
+ RemoteDriverServerException	 This Selenium exception is thrown when server do not respond due to the problem that the capabilities described are not proper.
+ ScreenshotException	 It is impossible to capture a screen.
+ ScriptTimeoutException	 Thrown when executeAsyncScript takes more time than the given time limit to return the value.
+ SessionNotCreatedException	 A new session could not be successfully created.
+ SessionNotFoundException	 The WebDriver is performing the action right after you quit the browser.
+ StaleElementReferenceException	 This Selenium exception happens if the web element is detached from the current DOM.
+ TimeoutException	 Thrown when there is not enough time for a command to be completed.
+ UnableToCreateProfileException	 You can open a browser with certain options using profiles, but sometimes a new version of Selenium driverserver or browser may not support the profiles.
+ UnableToSetCookieException	 Occurs if a driver is unable to set a cookie.
+ UnexpectedAlertPresentException	 This Selenium exception happens when there is the appearance of an unexpected alert.
+ UnexpectedTagNameException	 Happens if a support class did not get a web element as expected.
+ UnhandledAlertException	 It happens when there is an alert, but WebDriver is unable to perform Alert operation.
+ UnknownMethodException	 Thrown when the requested command matching with a known URL but not matching with a methodology for that URL.
+ UnreachableBrowserException	 This Selenium exception happens if the browser is unable to be opened or have crashed because of some reasons.
+ UnsupportedCommandException	 Occurs when remote WebDriver does not send valid command as expected.
+ WebDriverException	 This takes place when the WebDriver is performing the action right after you close the browser.
+
+
+
+
 
 
 
