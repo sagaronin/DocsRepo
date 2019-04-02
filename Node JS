@@ -1,8 +1,10 @@
 Learn JavaScript Objects:
+===========================
 https://www.w3schools.com/js/js_object_definition.asp
 Official Documentation: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Object_Model
 
-Java Script object with a method
+Java Script object with a method:
+=======================================
 var person = {
     firstName: "John",
     lastName : "Doe",
@@ -14,7 +16,8 @@ var myFather = new Person("John", "Doe", 50, "blue");
 var myMother = new Person("Sally", "Rally", 48, "green");
 
 Object Prototypes:
-Prototype Inheritance
+=====================
+Prototype Inheritance:-----------------
 All JavaScript objects inherit properties and methods from a prototype.
 •	Date objects inherit from Date.prototype. 
 •	Array objects inherit from Array.prototype. 
@@ -22,17 +25,17 @@ All JavaScript objects inherit properties and methods from a prototype.
 The Object.prototype is on the top of the prototype inheritance chain:
 Date objects, Array objects, and Person objects inherit from Object.prototype.
 
-The JavaScript prototype property allows you to add new properties to object constructors:
+The JavaScript prototype property allows you to add new properties to object constructors:*********************
 
 function Person(first, last, age, eyecolor) {
     this.firstName = first;
-    this.lastName = last;
+    this.lastName = last;;
     this.age = age;
     this.eyeColor = eyecolor;
 }
 Person.prototype.nationality = "English";
 
-The JavaScript prototype property also allows you to add new methods objects constructors:
+The JavaScript prototype property also allows you to add new methods objects constructors:***************************
 function Person(first, last, age, eyecolor) {
     this.firstName = first;
     this.lastName = last;
@@ -45,12 +48,14 @@ Person.prototype.name = function() {
 
 
 Node Good Video Tutorial:
+----------------------------
 https://www.youtube.com/watch?v=mbzCe1of_Hs
 
 npm init
  
 JQuery CallBack Mechanism:
-jQuery Callback Functions
+=================================
+jQuery Callback Functions:----------------------------
 JavaScript statements are executed line by line. However, with effects, the next line of code can be run even though the effect is not finished. This can create errors.
 To prevent this, you can create a callback function.
 A callback function is executed after the current effect is finished.
@@ -86,10 +91,15 @@ $(document).ready(function(){
 
 
 
-
+============================================================================
  
 Node  JS:
-Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.
+============
+
+Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine. 
+Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. 
+Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.
+
 DOCS: https://nodejs.org
 Q1.	What is Module?
 Ans:
@@ -98,8 +108,11 @@ Node has to be installed node -versionnode checker.js
 Codes:
 
 Detail Description of the Projects:
+======================================
 Initial Project:  Node-app
+
 1] 01_helloNodeWorld.js
+------------------------
 console.log("Hello world");
 
 for (let index = 0; index < 10; index++) {
@@ -114,6 +127,7 @@ var a={
 console.log(a);
 
 2] 02_dataTypes.js
+-------------------
 //Order of eval and how stirng affects the eval
 var x = 16 + "Volvo";
 console.log(x);
@@ -186,7 +200,8 @@ console.log(typeof person2);
 
 console.log();
 
-02_objects1.js
+03]02_objects1.js
+------------------
 var employee={
 
     id : 2343,
@@ -223,6 +238,7 @@ console.log(myMaruti.wheels);
 console.log(myMaruti.engine.size);
 
 04] 02_objects2.js[JavaScript Constructor Use & Prototype Explanation]
+-----------------------------------------------------------------------
 
 function Car(pColor,pWheels,pEngine){
     this.color=pColor;
@@ -251,6 +267,7 @@ honda.getInfo();
 console.log(honda.pat);//here this will be undefined since you have not defined Car.prototype.pat
 
 03_moduleExport[Export a js file and use it some other file]
+--------------------------------------------------------------
 Cals.js
 var Calculator = {
     add : function (a,b) {
@@ -278,6 +295,7 @@ module.exports.newFunction=tempFunction;  //We have to give the function a name 
 module.exports.tempVar=tempVar;
 
 For accessing the module:
+---------------------------
 var calc=require("./calc.js");
 
 console.log(calc);
@@ -288,7 +306,9 @@ console.log("2*3 =" + calc.mul(2,3));
 
 console.log(calc.newFunction());
 console.log(calc.tempVar);
+
 Node JS Features:
+===================
 •	Non-Blocking IO.
 •	Event Looping
 Q1.	What is the difference between Blocking(Synchronous Call ) and Non-Blocking (Asynchronous)?
@@ -313,7 +333,9 @@ console.log("Next line");
 
     Next line
 Query finished
+
 04_readFile:
+----------------
 var fs=require('fs');
 var args=process.argv.length; //No of arguments passed in the command line
 
@@ -343,16 +365,19 @@ Ans:  A callback function is another function that can be passed as an argument 
 Very Good Explanation: https://www.youtube.com/watch?v=haz4SBcEYAw
 
 Callbacks:
+===============
 A callback is a function passed to some asynchronous process that should be called when the process has completed.
 
 Callbacks are just a specific case of functions being passed as a parameter in JavaScript.
 
 Anatomy of Callback:
+====================
 •	By convention, we pass the callback as the last parameter to any asynchronous function.
 (param1, param2, … callback)
 •	The callback should always expect parameters in the form of (error, … otherReturnedValues)
 
 05_fileFilterASync:
+---------------------
 var fs=require("fs");
 var path=require("path");
 var noOfFiles1=0;
@@ -396,6 +421,7 @@ filterListInSync(dir,filterstr,fileFilterCallback);
 //it will count the no of files with js extention
 
 qrCodeDemo.js :
+========================
 
 First you need to install the Module qr-image
 Command : npm install qr-image -G
