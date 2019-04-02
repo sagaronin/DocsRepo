@@ -157,3 +157,235 @@ public static WebDriver driver = new FirefoxDriver();
 
 		
 	}
+	-----------------------------------------------------------------------------
+	
+	
+Selenium Architecture:
+Selenium Language Bindings / Selenium Client Libraries
+Selenium developers have built language bindings/Selenium Client Libraries in order to support multiple languages. For instance, if you want to use the browser driver in java, use the java bindings. All the supported language bindings can be downloaded from the official website (https://www.seleniumhq.org/download/#client-drivers) of Selenium.
+
+JSON Wire Protocol
+JSON (JavaScript Object Notation) is an open standard for exchanging data on web. It supports data structures like object and array. So, it is easy to write and read data from JSON. To learn more about JSON, visit https://www.javatpoint.com/json-tutorial
+JSON Wire Protocol provides a transport mechanism to transfer data between a server and a client. JSON Wire Protocol serves as an industry standard for various REST web services. To learn more about Web Services, visit https://www.javatpoint.com/web-services-tutorial
+
+Browser Drivers
+Selenium uses drivers, specific to each browser in order to establish a secure connection with the browser without revealing the internal logic of browser's functionality. The browser driver is also specific to the language used for automation such as Java, C#, etc.
+When we execute a test script using WebDriver, the following operations are performed internally.
+o	HTTP request is generated and sent to the browser driver for each Selenium command.
+o	The driver receives the HTTP request through HTTP server.
+o	HTTP Server decides all the steps to perform instructions which are executed on browser.
+o	Execution status is sent back to HTTP Server which is subsequently sent back to automation script.
+
+Browsers
+Browsers supported by Selenium WebDriver:
+o	Internet Explorer
+o	Mozilla Firefox
+o	Google Chrome
+o	Safari
+
+Different Types of WebDriver Command
+WebDriver command
+
+get()
+• The command launches a new browser and opens the specified URL in the browser instance
+• The command takes a single string type parameter that is usually a URL of application under test
+• To the Selenium IDE users, the command may look very much like open command
+driver.get("https://google.com");
+
+getClass()
+The command is used to retrieve the Class object 
+that represents the runtime class of this object
+driver.getClass();
+
+getCurrentUrl()
+• The command is used to retrieve the URL of the webpage the user is currently accessing 
+• The command doesn’t require any parameter and returns a string value
+driver.getCurrentUrl();
+
+getPageSource()
+• The command is used to retrieve the page source of the webpage the user is currently accessing. If the page has been modified after loading (for example, by Javascript) there is no guarantee that the returned text is that of the modified page.
+• The command doesn’t require any parameter and returns a string value
+• The command can be used with various string operations like contains() to ascertain the 
+presence of the specified string value
+boolean result = driver.getPageSource().contains("String to find");
+
+getTitle()
+• The command is used to retrieve the title of the webpage the user is currently working on. A null string is returned if the webpage has no title
+• The command doesn’t require any parameter and returns a trimmed string value 
+String title = driver.getTitle();
+
+getText()
+• The command is used to retrieve the inner text of the specified web element
+• The command doesn’t require any parameter and returns a string value
+• It is also one of the extensively used commands for verification of messages, labels, errors etc displayed 
+on the web pages.
+String Text = driver.findElement(By.id("Text")).getText();
+
+getAttribute()
+• The command is used to retrieve the value of the specified attribute
+• The command requires a single string parameter that refers to an attribute whose value we aspire to know and returns a string value as a result.
+driver.findElement(By.id("findID")).getAttribute("value");
+
+getWindowHandle()
+• The command is used to tackle with the situation when we have more than one window to deal with. 
+• The command helps us switch to the newly opened window and performs actions on the new window. 
+The user can also switch back to the previous window if he/she desires.
+
+private String winHandleBefore;
+winHandleBefore = driver.getWindowHandle();
+driver.switchTo().window(winHandleBefore);
+
+getWindowHandles()
+• The command is similar to that of “getWindowHandle()” with the subtle difference that it helps to deal with multiple windows i.e. when we have to deal with more than 2 windows.
+
+findElement()
+Syntax: WebElement findElement(By by)
+Example: driver.findElements(By.xpath("//");
+Purpose: Find the first WebElement using the given method.
+Parameters: By - The locating mechanism
+Returns: The first matching element on the current page
+Throws: NoSuchElementException - it will return exception if no matching elements are found
+
+findElements()
+Syntax: findElements(By by)
+Example: driver.findElements(By.xpath("//");
+Purpose: Find all elements within the current page using the given mechanism.
+Parameters: By - The locating mechanism to use
+Returns: A list of all WebElements, or an empty list if nothing matches
+
+close()
+Syntax: void close()
+Example: driver.close();
+Purpose: Close the current window, if there are multiple windows, it will close the current window which is active and quits the browser if it's the last window opened currently.
+
+quit()
+Syntax: void quit()
+Example: driver.quit();
+Purpose: Quits this driver instance, closing every associated window which is opened.
+--------------------------------------------------------------------------------
+Different Types of Navigate Command:
+	diver.navigate().back() : Takes back to the previous web-Page
+	diver.navigate().forward() : Navigate to next web-page, with reference to browse history.
+	diver.navigate().refresh() : Reloads the current page.
+	diver.navigate().to(“www.google.com”) : Navigate to specified url
+
+Types of Sleep:
+There are basically three wait types in Selenium automation:
+	Implicit Wait Type
+	Explicit Wait Type
+	Fluent Wait Type
+
+Implicit Wait:
+By default the driver will try to find the element till the time specified. And it goes to all the element.
+driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+Explicit wait:
+The explicit wait is used to tell the Web Driver to wait for certain conditions (Expected Conditions) or the maximum time exceeded before throwing an "ElementNotVisibleException" exception.
+WebDriverWait wait=new WebDriverWait(driver, 20);
+element=wait.until(ExpectedConditions.visibilityOf(element));
+The following are the Expected Conditions that can be used in Explicit Wait
+	alertIsPresent()
+	elementSelectionStateToBe()
+	elementToBeClickable()
+	elementToBeSelected()
+	frameToBeAvaliableAndSwitchToIt()
+	invisibilityOfTheElementLocated()
+	invisibilityOfElementWithText()
+	presenceOfAllElementsLocatedBy()
+	presenceOfElementLocated()
+	textToBePresentInElement()
+	textToBePresentInElementLocated()
+	textToBePresentInElementValue()
+	titleIs()
+	titleContains()
+	visibilityOf()
+	visibilityOfAllElements()
+	visibilityOfAllElementsLocatedBy()
+	visibilityOfElementLocated()
+Fluent Wait:
+The fluent wait is used to tell the web driver to wait for a condition, as well as the frequency with which we want to check the condition before throwing an "ElementNotVisibleException" exception.
+Frequency: Setting up a repeat cycle with the time frame to verify/check the condition at the regular interval of time
+WebElement element=driver.findElement(By.xpath(""));
+		FluentWait wait = new FluentWait(driver)
+				.withTimeout(30, TimeUnit.SECONDS)
+				.pollingEvery(5, TimeUnit.SECONDS)
+				.ignoring(NoSuchElementException.class);
+		wait.until(ExpectedConditions.visibilityOf(element));
+
+All axis Scenario of Xpath
+•	Contains()
+•	Using OR & AND
+•	Start-with function
+•	Text()
+•	XPath axes methods
+o	Following
+o	Ancestor
+o	Child
+o	Preceding
+o	Following-sibling
+o	Parent
+o	Self
+o	Descendant
+Contains: //th[contains(text(),'Before')]	    
+AND: //input[@type='text' and @name='preMealLow']
+--------------------------------------------------------------------
+Mouse Click & KeyBoard Event: Action Class
+Handling special keyboard and mouse events are done using the Advanced User Interactions API. It contains the Actions and the Action classes that are needed when executing these events. The following are the most commonly used keyboard and mouse events provided by the Actions class.
+
+clickAndHold()	
+Clicks (without releasing) at the current mouse location.
+
+contextClick()	
+Performs a context-click at the current mouse location. (Right Click Mouse Action)
+
+doubleClick()	
+Performs a double-click at the current mouse location.
+
+dragAndDrop(source, target)	
+Performs click-and-hold at the location of the source element, moves to the location of the target element, then releases the mouse.
+Parameters:
+source- element to emulate button down at.
+target- element to move to and release the mouse at.
+
+dragAndDropBy(source, x-offset, y-offset)	
+Performs click-and-hold at the location of the source element, moves by a given offset, then releases the mouse.
+Parameters:
+source- element to emulate button down at.
+xOffset- horizontal move offset.
+yOffset- vertical move offset.
+
+keyDown(modifier_key)	
+Performs a modifier key press. Does not release the modifier key - subsequent interactions may assume it's kept pressed.
+Parameters:
+modifier_key - any of the modifier keys (Keys.ALT, Keys.SHIFT, or Keys.CONTROL)
+
+keyUp(modifier _key)	
+Performs a key release.
+Parameters:
+modifier_key - any of the modifier keys (Keys.ALT, Keys.SHIFT, or Keys.CONTROL)
+
+moveByOffset(x-offset, y-offset)	
+Moves the mouse from its current position (or 0,0) by the given offset.
+Parameters:
+x-offset- horizontal offset. A negative value means moving the mouse left.
+y-offset- vertical offset. A negative value means moving the mouse down.
+
+moveToElement(toElement)	
+Moves the mouse to the middle of the element. 
+Parameters:
+toElement- element to move to.
+
+release()	
+Releases the depressed left mouse button at the current mouse location
+
+sendKeys(onElement, charsequence)	
+Sends a series of keystrokes onto the element. 
+Parameters:
+onElement - element that will receive the keystrokes, usually a text field
+charsequence - any string value representing the sequence of keystrokes to be sent
+
+--------------------------------------------------------------------------------------------------------------------------
+
+
+
+
