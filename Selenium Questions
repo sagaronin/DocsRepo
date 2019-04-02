@@ -110,3 +110,50 @@
 1 to 43 Link - https://www.softwaretestinghelp.com/selenium-interview-questions-answers/
 44 to 107 Link - https://www.guru99.com/top-100-selenium-interview-questions-answers.html
 108 Link - https://www.softwaretestingmaterial.com/selenium-webdriver-architecture/
+-----------------------------------------------------------------------------------------------------
+CommonUtils:
+public static WebDriver driver = new FirefoxDriver();
+
+	public static void clickAndHold(WebElement element) {
+		Actions actionsBuilder = new Actions(driver).clickAndHold(element);
+		Action action = actionsBuilder.build();
+		action.perform();
+	}
+  public static void pressKey(WebElement element) {
+		Actions actionsBuilder = new Actions(driver).keyDown(element, Keys.SPACE);
+		Action action = actionsBuilder.build();
+		action.perform();
+	}
+
+	public void select(WebElement element) {
+		Select select = new org.openqa.selenium.support.ui.Select(element);
+		select.getFirstSelectedOption(); // To get Current selected value
+
+		select.selectByIndex(1);// selecting by index
+		select.selectByValue("Text");// Select By Value
+		select.selectByVisibleText("I am");
+	}
+  
+  public void switchToActualWindow(WebElement element) {
+		String mainWindow = driver.getWindowHandle();
+		Set<String> allwindows = driver.getWindowHandles();
+		Iterator<String> iterator = allwindows.iterator();
+		while (iterator.hasNext()) {
+			String childWindow = (String) iterator.next();
+			driver.switchTo().window(childWindow);
+			if (mainWindow.equalsIgnoreCase(childWindow)) {
+				break;
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		WebElement element=driver.findElement(By.xpath(""));
+		FluentWait wait = new FluentWait(driver)
+				.withTimeout(30, TimeUnit.SECONDS)
+				.pollingEvery(5, TimeUnit.SECONDS)
+				.ignoring(NoSuchElementException.class);
+		wait.until(ExpectedConditions.visibilityOf(element));
+
+		
+	}
