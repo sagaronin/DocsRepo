@@ -1,0 +1,65 @@
+TROUBLESHOOTING - IOS  ** BUNDLE ID --HOW TO GET THE BUNDLE ID OF IOS INBUILT APPS?
+=========================================================================================
+
+These are from iPhone 4S iOS 5.0.1
+Camera:       com.apple.camera
+AppStore:     com.apple.AppStore
+Contacts:     com.apple.MobileAddressBook
+Mail:         com.apple.mobilemail
+GameCenter:   com.apple.gamecenter
+MobileSafari: com.apple.mobilesafari
+Preferences:  com.apple.Preferences
+iPod:         com.apple.mobileipod
+Photos:       com.apple.mobileslideshow
+Calendar:     com.apple.mobilecal
+Clock:        com.apple.mobiletimer						
+
+
+TROUBLESHOOTING - HOW TO FIND A WEB APP//NATIVE APP //HYBRID APP
+====================================================================
+Hybrid App    installed with WebView Instrumentation
+ 
+Xpath: (//input[@id="PlanContractNumber"])[1]
+Locator: //*[@id="PlanContractNumber"]
+
+Hybrid App    installed without WebView Instrumentation(Behaves as native app)
+Xpath: //device/view/group[1]/group[1]/group[1]/group[1]/webview[1]
+Object Locator: //*[@resourceid="android:id/content"]//*[@class="android.widget.LinearLayout"]/webview[1]
+
+
+Datepicker without SendKeys:
+==================================
+
+public static void selectYear(String Xpath, String year){
+ IOSElement element = (IOSElement) driver.findElementByXPath(Xpath);
+ Integer yearInt = Integer.valueOf(year);
+ String direction;
+ if(Integer.valueOf(element.getAttribute("value").toString())<yearInt)
+ direction = "UP";
+ else direction = "DOWN";
+
+ Point point = element.getCenter();
+ int endx = point.getX();
+ int endy;
+ 
+ if(direction=="DOWN") endy = point.getY()-80;
+ else endy = point.getY()+80;
+
+ while(!(driver.findElementByXPath(Xpath).getAttribute("value").toString().contains(year)))
+ ((IOSDriver)driver).tap(1, endx, endy, 1);
+ }
+
+TROUBLESHOOTING -  XPATH NOT WORKING(UNABLE TO CLICK)
+==========================================================
+•	Try for the Tap option[AndroidDriver (driver)]
+driver.tap(fingers, element, duration);
+driver.tap(fingers, x, y, duration);
+Abdul’s Solution:
+1.	Since you are trying to search element by its displayed text, there might be white space making mismatch. Please use normalize-space() function for xpath as shown you in the webEx.
+2.	Since your element's attribute clickable is false please use tap method from AppiumDriver, as shown you in the WebEx.
+
+If Clickable=true;
+If Clickable=False; tap method
+
+3.	Since your element is partially getting overlapped by checkbox, you can get the location of the element and add some digit to it to get away from overlap and use .tap method for location from AppiumDriver instance of the class.
+
