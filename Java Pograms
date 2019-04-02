@@ -417,3 +417,105 @@ public static boolean anagram(String s1, String s2) {
 		}
 
 	}
+----------------------------------------------------------------
+public static void coutChar(String str) {
+		char arr[] = str.trim().replaceAll("\\s", "").toLowerCase().toCharArray();
+		Map<Character, Integer> map = new HashMap<>();
+		for (int i = 0; i < arr.length; i++) {
+			if (map.containsKey(arr[i])) {
+
+				map.put(arr[i], map.get(arr[i]) + 1);
+			} else {
+				map.put(arr[i], 1);
+			}
+		}
+
+		Set<Character> keys = map.keySet();
+		for (Character key : keys) {
+			System.out.println(key + " : " + map.get(key));
+		}
+	}
+------------------------------------------------------------------------
+public static void coutWord(String str1) {
+		String arr[] = str1.trim().split("\\s");
+		Map<String, Integer> map = new HashMap<>();
+		for (int i = 0; i < arr.length; i++) {
+			if (map.containsKey(arr[i].toLowerCase())) {
+
+				map.put(arr[i].toLowerCase(), map.get(arr[i].toLowerCase()) + 1);
+			} else {
+				map.put(arr[i].toLowerCase(), 1);
+			}
+		}
+
+		Set<String> keys = map.keySet();
+		for (String key : keys) {
+			System.out.println(key + " : " + map.get(key));
+		}
+
+	}
+	----------------------------------------------------------------------------
+	public static void swapString(String input1, String input2) {
+		System.out.println("Before Swap:" + input1 + "|" + input2);
+		input2 = input1 + input2;
+		input1 = input2.substring(input1.length(), input2.length());
+		input2 = input2.replace(input1, "");
+		System.out.println("AfterSwap:" + input1 + "|" + input2);
+	}
+	-------------------------------------------------------------------------
+	public static void stringReverse(String str) {
+		String reverse = "";
+		for (int i = str.length() - 1; i >= 0; i--) {
+			reverse = reverse + str.charAt(i);
+		}
+		System.out.println("Actual:" + str + "|" + "Reverse:" + reverse);
+	}
+	--------------------------------------------------------------------------
+	public static void removeSpaces(String str) {
+		String spaceRemoved = "";
+		for (int i = 0; i < str.length(); i++) {
+			if (!(str.charAt(i) == ' ') && !(str.charAt(i) == '.')) {
+				spaceRemoved = spaceRemoved + (str.charAt(i));
+			}
+		}
+		System.out.println("Original:" + str + "|" + "SpaceTrimmed:" + spaceRemoved);
+	}
+	--------------------------------------------------------------------------
+	public static int formatArrange(int a) {
+		String inputString = new String(Integer.toString(a));
+		String revString="";
+		for (int i = inputString.length() - 1; i >= 0; i--) {
+			revString=revString+inputString.charAt(i);
+		}
+		String out="";
+		for (int i = 0; i < inputString.length(); i++) {
+			out=out+inputString.charAt(i);
+			if (out.length()==inputString.length()) {
+				break;
+			}
+			out=out+revString.charAt(i);
+			if (out.length()==inputString.length()) {
+				break;
+			}
+			
+		}
+		System.out.println("Actual:"+a+" | "+"Modified:"+Integer.parseInt(out));
+		return Integer.parseInt(out);
+	}
+	---------------------------------------------------------------------------
+	public static int printFormatSame(int a) {
+		String str=new String(Integer.toString(a));
+		String rev="";
+		String out="";
+		for (int i = str.length()-1; i >=0; i--) {
+			rev=rev+str.charAt(i);
+		}
+		for (int i = 0; i < rev.length(); i++) {
+			out=out+str.charAt(i);
+			if(out.length()==str.length())break;
+			out=out+rev.charAt(i);
+			if(out.length()==str.length())break;
+		}
+		System.out.println("Actual:"+a+" | "+"Modified:"+Integer.parseInt(out));
+		return Integer.parseInt(out);
+	}
