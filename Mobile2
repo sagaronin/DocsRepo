@@ -1,0 +1,10 @@
+Ui Automator: C:\Users\kingshuk.nandy\AppData\Local\Android\Sdk\tools\bin\uiautomatorviewer
+npm install appium --chromedriver_version="2.23"
+
+Sending Key Events on your android Device:
+==========================================
+Android devices that run versions above 5.0 support KeyEvents, where each KeyEvent corresponds to an action from the keyboard 
+or the special system keys of the device. 
+The code samples below demonstrate how to send Key events such as the Enter/Search Key and the Backspace Key to an Android device.
+
+
