@@ -1,5 +1,9 @@
 Ui Automator: C:\Users\kingshuk.nandy\AppData\Local\Android\Sdk\tools\bin\uiautomatorviewer
-npm install appium --chromedriver_version="2.23"
+
+Always install the appium server by relavan version of Chrome driver.
+[http://appium.io/docs/en/writing-running-appium/web/chromedriver/#automatic-discovery-of-compatible-chromedriver]
+*npm install appium --chromedriver_version="2.23"
+*appium  --> To start the server
 
 Sending Key Events on your android Device:
 ==========================================
@@ -7,4 +11,27 @@ Android devices that run versions above 5.0 support KeyEvents, where each KeyEve
 or the special system keys of the device. 
 The code samples below demonstrate how to send Key events such as the Enter/Search Key and the Backspace Key to an Android device.
 
-
+Android Web Automation Basic Code:
+=====================================
+DesiredCapabilities desiredCapabilities=new DesiredCapabilities();
+		desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"Android");
+		desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"emulator-5554");
+		desiredCapabilities.setCapability(MobileCapabilityType.BROWSER_NAME,"Chrome" );
+		
+		
+		URL url = new URL("http://127.0.0.1:4723/wd/hub");
+		RemoteWebDriver driver;
+		try {
+			driver=new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"),desiredCapabilities);
+			driver.get("http://saucelabs.com/test/guinea-pig");
+			WebElement div = driver.findElement(By.id("i_am_an_id"));
+			System.out.println(div.getText()); //check the text retrieved matches expected value
+			driver.findElement(By.id("comments")).sendKeys("My comment"); //populate the comments field by id.
+			
+			driver.findElementByXPath("//form[@id='jumpContact']//input[@id='fbemail']").click();
+			driver.getKeyboard().sendKeys("taral@gmail.com");
+			Thread.sleep(10000);
+			driver.quit();
+		} catch (Exception e) {
+			System.err.println("Error:"+e.getMessage());
+		}
