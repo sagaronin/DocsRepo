@@ -54,29 +54,3 @@
 			System.out.println(interfaceIm[i].getName());//Get implemented Interfaces names
 		}
 
-int mod=runtimeEmployee.getModifiers();
-		Modifier.isStatic(mod); // --> Return true if the integer argument includes the static modifier, false otherwise.
-		Modifier.isPublic(mod);
-		Modifier.isAbstract(mod);
-		Modifier.isFinal(mod);
-		Modifier.isInterface(mod);
-		Modifier.isNative(mod);
-		Modifier.isNative(mod);
-		Modifier.isPrivate(mod);
-		Modifier.isProtected(mod);
-		Modifier.isStrict(mod);
-		Modifier.isSynchronized(mod);
-		Modifier.isTransient(mod);
-		Modifier.isVolatile(mod);
-                        Package packege=runtimeEmployee.getPackage();
-		String packageName=packege.getName();
-		System.out.println(packageName);
-		
-		Class classSuper=runtimeEmployee.getSuperclass();  //Getting Super Class class object
-		String superClassFullName=classSuper.getName();  //Super Class Name
-		System.out.println(superClassFullName);
-		
-		Class interfaceIm[]=runtimeEmployee.getInterfaces();
-		for (int i = 0; i < interfaceIm.length; i++) {
-			System.out.println(interfaceIm[i].getName());//Get implemented Interfaces names
-		}
