@@ -519,3 +519,25 @@ public static void coutWord(String str1) {
 		System.out.println("Actual:"+a+" | "+"Modified:"+Integer.parseInt(out));
 		return Integer.parseInt(out);
 	}
+	--------------------------------------------------------------------------
+	public static void consonantVowelAndDigitsCount() {
+		int vowels=0;
+		int consonants=0;
+		int digits=0;
+		String str="121432a2qwei123ou";
+		str=str.toLowerCase();
+		for (int i = 0; i < str.length(); i++) {
+			char c=str.charAt(i);
+			if (c=='a'||c=='e'||c=='i'||c=='o'||c=='u') {
+				vowels++;
+			}else if (Character.isDigit(c)) {
+				digits++;
+			}else {
+				consonants++;
+			}
+		}
+		System.out.println("Digits:"+digits);
+		System.out.println("Vowel:"+vowels);
+		System.out.println("Consonents:"+consonants);
+	}
+	---------------------------------------------------------
