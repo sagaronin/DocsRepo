@@ -1,0 +1,34 @@
+Ways to get Class object of Employee Class:
+=================================================
+* Object obj=new Employee();
+	Class runtimeEmployee=obj.getClass(); 
+* Class runtimeEmployee=Employee.class;
+
+		String simpleName=runtimeEmployee.getSimpleName(); //Output: Employee// Get Class Name
+		String cannonicaName=runtimeEmployee.getCanonicalName();//Output: com.Employee //get Fully Qualified Class Name
+
+    Field field1[]=runtimeEmployee.getDeclaredFields();//-->All Methods
+		Field field2[]=runtimeEmployee.getFields();			//-->Get all possible public Methods
+		
+		Method method1[]=runtimeEmployee.getDeclaredMethods();
+		Method method2[]=runtimeEmployee.getMethods();
+		
+		Constructor cons1[]=runtimeEmployee.getDeclaredConstructors();
+		Constructor cons2[]=runtimeEmployee.getConstructors();
+		
+		int mod=runtimeEmployee.getModifiers();
+		Modifier.isStatic(mod); // --> Return true if the integer argument includes the static modifier, false otherwise.
+		Modifier.isPublic(mod);
+		Modifier.isAbstract(mod);
+		Modifier.isFinal(mod);
+		Modifier.isInterface(mod);
+		Modifier.isNative(mod);
+		Modifier.isNative(mod);
+		Modifier.isPrivate(mod);
+		Modifier.isProtected(mod);
+		Modifier.isStrict(mod);
+		Modifier.isSynchronized(mod);
+		Modifier.isTransient(mod);
+		Modifier.isVolatile(mod);
+  
+ 
