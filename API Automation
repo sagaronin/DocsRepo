@@ -7,6 +7,9 @@ Why Rest API is preffered over Soap Webservices?
 What are the componets of Rest and Soap Web Services?[EndPoind,Resource,Template]
 What are the inputs supported for Rest API?
 Examples of Rest API with Components?
+What are the Varius Methods of RestAPI---> Similarity with DB
+Can we create a database record with with Put API
+Various Response Code and there details?
 =========================================
 
 Where are API used in actual world?Used cases Diagram
@@ -15,5 +18,9 @@ How we can achive it?PostMan,Ready API,Java
 
 Basic of API Automation Write Code with 2 API example?RestTemplate
 Possible Scenarions that can be dereived?
+
+Two Used Cases: Where API and Web automation Simultanously used?
+
+If you get a 200 Response, is that means that the  API request is successful.
 
 
