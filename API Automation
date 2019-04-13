@@ -1,26 +1,26 @@
-What are WebServices?
-How many Types of Webservices are there?
-What is Soap Webservices? Details with Example
-What is Rest Webservices?Example
-Differences between Rest AND SOAP?
-Why Rest API is preffered over Soap Webservices?
-What are the componets of Rest and Soap Web Services?[EndPoind,Resource,Template]
-What are the inputs supported for Rest API?
-Examples of Rest API with Components?
-What are the Varius Methods of RestAPI---> Similarity with DB
-Can we create a database record with with Put API
-Various Response Code and there details?
+1.	What are Web-Services?
+2.	How many Types of Web-services are there?
+3.	What are Soap Web services? Details with Example
+4.	What are Rest Web services? Example
+5.	Differences between Rest AND SOAP?
+6.	Why Rest API is preferred over Soap Web services?
+7.	What are the components of Rest and Soap Web Services?[ Endpoint , Resource, Template]
+8.	What are the inputs supported for Rest API?
+9.	Examples of Rest API with Components?
+10.	What are the Various Methods of RestAPI---> Similarity with DB
+11.	Can we create a database record with Put API
+12.	Various Response Code and there details?
 =========================================
 
-Where are API used in actual world?Used cases Diagram
-What is API Automations?
-How we can achive it?PostMan,Ready API,Java
+13.	Where are API used in actual world? Used cases Diagram
+14.	What is API Automations?
+15.	How we can achieve it? Postman , Ready API, Java
 
-Basic of API Automation Write Code with 2 API example?RestTemplate
-Possible Scenarions that can be dereived?
+16.	Basic of API Automation Write Code with 2 API examples? Rest Template
+17.	Possible Scenarios that can be derived?
 
-Two Used Cases: Where API and Web automation Simultanously used?
+18.	Two Used Cases: Where API and Web automation Simultanously used?
 
-If you get a 200 Response, is that means that the  API request is successful.
+19.	If you get a 200 Response, is that means that the  API request is successful.
 
 
