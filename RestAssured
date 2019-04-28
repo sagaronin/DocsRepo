@@ -1,0 +1,96 @@
+Test Class:
+@BeforeMethod
+	public void setUp() {
+		RestAssured.baseURI = "http://10.12.40.220";
+		RestAssured.defaultParser = Parser.JSON;
+		ArrayList<Filter> filters = new ArrayList<Filter>(RestAssured.filters());
+		filters.add(new CookieFilter());
+		filters.add(new RequestLoggingFilter());
+		filters.add(new ResponseLoggingFilter());
+		RestAssured.filters(filters);
+	}
+
+@Test
+	public void placeOrderWithOneItem(ITestContext context) {
+		User user = registerRandomUser();
+		loginUser(user);
+		context.setAttribute("currentUser", user);
+
+		// add items id with quantity
+		Map<String, Integer> items = new HashMap<String, Integer>();
+		items.put(P1, 1);
+
+		addItemsToCart(items);
+		verifyCart(items);
+		addShippingAddress(new Generator<Address>(Address.class).generate());
+		addCardDetails(new Generator<Card>(Card.class).generate());
+		placeOrder();
+		verifyOrder(items);
+	}
+
+@Test
+	public void updateDeleteFromCart(ITestContext context) {
+		User user = registerRandomUser();
+		context.setAttribute("currentUser", user);
+
+		Map<String, Integer> items = new HashMap<String, Integer>();
+		items.put(P1, 1);
+		items.put(P2, 1);
+		addItemsToCart(items);
+		verifyCart(items);
+
+		// update cart
+		items.put(P1, 4);
+		updateCart(items);
+		verifyCart(items);
+		
+		items.put(P1, 2);
+		updateCart(items);
+		verifyCart(items);
+
+		// remove from cart
+		items.remove(P2);
+		deleteFromCart(P2);
+		verifyCart(items);
+
+		// add address
+		addShippingAddress(new Generator<Address>(Address.class).generate());
+
+		// add card details
+		addCardDetails(new Generator<Card>(Card.class).generate());
+
+		// place order
+		placeOrder();
+
+		// verify order
+		verifyOrder(items);
+	}
+  
+  @Test
+	public void placeOrderWithMultipleItems(ITestContext context) {
+		User user = registerRandomUser();
+		context.setAttribute("currentUser", user);
+		Map<String, Integer> items = new HashMap<String, Integer>();
+		items.put(P1, 1);
+		items.put(P2, 2);
+		addItemsToCart(items);
+		verifyCart(items);
+		addShippingAddress(new Generator<Address>(Address.class).generate());
+		addCardDetails(new Generator<Card>(Card.class).generate());
+		placeOrder();
+		verifyOrder(items);
+	}
+
+	@AfterMethod(alwaysRun = true)
+	public void clearData(ITestContext context) {
+
+		// delete user
+		if (context.getAttribute("currentUser") != null) {
+			RestAssureSteps
+					.deleteUser(((User) context.getAttribute("currentUser")).getId());
+		}
+		context.setAttribute("currentUser", null);
+
+		// delete all cookies
+		RestAssured.reset();
+	}
