@@ -148,3 +148,28 @@ public static void addShippingAddress(Address address) {
 			}
 		});
 	}
+public static void verifyCart(Map<String, Integer> expecteditems) {
+		Response response = when().get("/cart");
+		assertEquals(response.getStatusCode(), 200);
+		JsonArray array =
+				new JsonParser().parse(response.getBody().asString()).getAsJsonArray();
+		assertEquals(array.size(), expecteditems.size());
+		for (int i = 0; i < array.size(); ++i) {
+			JsonObject obj = array.get(i).getAsJsonObject();
+			String actualId = obj.get("itemId").getAsString();
+			int actualQuantity = obj.get("quantity").getAsInt();
+			assertThat(expecteditems, Matchers.hasEntry(actualId, actualQuantity));
+		}
+	}
+
+	public static void updateCart(Map<String, Integer> items) {
+		items.forEach((id, quantity) -> {
+			for (int i = 0; i < quantity; ++i) {
+				Map<String, String> map = new HashMap<>();
+				map.put("id", id);
+				map.put("quantity", String.valueOf(quantity));
+				given().contentType(ContentType.JSON).body(map).when()
+						.post("/cart/update").then().statusCode(202);
+			}
+		});
+	}
