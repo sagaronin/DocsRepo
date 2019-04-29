@@ -173,3 +173,35 @@ public static void verifyCart(Map<String, Integer> expecteditems) {
 			}
 		});
 	}
+
+public static void deleteFromCart(String id) {
+		when().delete("/cart/" + id).then().statusCode(202);
+	}
+
+	public static void verifyOrder(Map<String, Integer> expecteditems) {
+		Response response =
+				when().get("/orders").then().statusCode(201).and().extract().response();
+		assertEquals(response.getStatusCode(), 201);
+		JsonArray array =
+				new JsonParser().parse(response.getBody().asString()).getAsJsonArray();
+		assertThat(array.size(), Matchers.greaterThanOrEqualTo(1));
+		JsonObject order = array.get(0).getAsJsonObject();
+		assertThat(order.get("items").getAsJsonArray().size(),
+				Matchers.equalTo(expecteditems.size()));
+		JsonArray actualItems = order.get("items").getAsJsonArray();
+		for (int i = 0; i < actualItems.size(); ++i) {
+			JsonObject obj = actualItems.get(i).getAsJsonObject();
+			String actualId = obj.get("itemId").getAsString();
+			int actualQuantity = obj.get("quantity").getAsInt();
+			assertThat(expecteditems, Matchers.hasEntry(actualId, actualQuantity));
+		}
+	}
+
+	public static void deleteUser(String id) {
+		when().delete("/customers/" + id).then().statusCode(200)
+				.content(Matchers.containsString("true"));
+	}
+
+	public static void placeOrder() {
+		when().post("/orders").then().statusCode(201);
+	}
