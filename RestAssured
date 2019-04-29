@@ -126,3 +126,25 @@ public static User registerRandomUser() {
 				.cookie("logged_in", Matchers.notNullValue());
 
 	}
+
+
+public static void addShippingAddress(Address address) {
+		given().contentType(ContentType.JSON).body(address).when().post("/addresses")
+				.then().statusCode(200);
+	}
+
+	public static void addCardDetails(Card card) {
+		given().contentType(ContentType.JSON).body(card).when().post("/cards").then()
+				.statusCode(200);
+	}
+
+	public static void addItemsToCart(Map<String, Integer> items) {
+		items.forEach((id, quantity) -> {
+			for (int i = 0; i < quantity; ++i) {
+				Map<String, String> map = new HashMap<>();
+				map.put("id", id);
+				given().contentType(ContentType.JSON).body(map).when().post("/cart")
+						.then().statusCode(201);
+			}
+		});
+	}
