@@ -110,3 +110,19 @@ public static User registerRandomUser() {
 				.cookie("logged_in", Matchers.notNullValue());
 
 	}
+
+public static User registerRandomUser() {
+		User bean = new Generator<User>(User.class).generate();
+		String id = given().contentType(ContentType.JSON).body(bean).when()
+				.post("/register").then().statusCode(200)
+				.body("id", Matchers.notNullValue()).and().extract().path("id");
+		bean.setId(id);
+		return bean;
+	}
+
+	public static void loginUser(User userBean) {
+		given().auth().preemptive().basic(userBean.getUserName(), userBean.getPassword())
+				.when().get("/login").then().statusCode(200)
+				.cookie("logged_in", Matchers.notNullValue());
+
+	}
