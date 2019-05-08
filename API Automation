@@ -8,6 +8,12 @@
 8.	What are the inputs supported for Rest API?
 9.	Examples of Rest API with Components?
 10.	What are the Various Methods of RestAPI---> Similarity with DB
+Ans - Create (SQL INSERT)  : POST - Used to support the creation of a child resource, but can also modify the underlying state of a system.
+      Read (SQL SELECT)    : GET - Retrieve a representation of a resource, but with additional semantics available.
+      Update (SQL UPDATE)  : PUT - Update a resource using a full representation. Can also be used to create a resource. The full representation requirement is a large caveat, see the following.
+      Update (again)       : PATCH - Update a resource using a partial representation.
+      Delete (SQL DELETE)  : DELETE -  Delete a resource. This is the best matched mapping.
+
 11.	Can we create a database record with Put API
 12.	Various Response Code and there details?
 =========================================
