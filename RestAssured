@@ -205,3 +205,82 @@ public static void deleteFromCart(String id) {
 	public static void placeOrder() {
 		when().post("/orders").then().statusCode(201);
 	}
+=====================================================================
+
+Very Basics:
+public class ApiSuite {
+	
+	@BeforeMethod
+	public void setUp(){
+		RestAssured.baseURI="https://www.googleapis.com/gmail/v1/users";
+		RestAssured.defaultParser=Parser.JSON;
+		ArrayList<Filter> filters=new ArrayList();
+		filters.add(new CookiesFilter());
+		RestAssured.filters(filters);
+	}
+
+	@Test(enabled=false)
+	public void suite1(){
+		RestAssured.baseURI="http://restapi.demoqa.com/utilities/weather/city";
+		RequestSpecification httpRequest=RestAssured.given();
+		Response response = httpRequest.request(Method.GET,"/Hyderabad");
+		String body=response.getBody().asString();
+		System.out.println(body);
+	}
+	
+	@Test(enabled=false)
+	public void suite2(){
+		RestAssured.baseURI="http://restapi.demoqa.com/utilities/weather/city";
+		RequestSpecification httpRequest=RestAssured.given();
+		Response response = httpRequest.get("/Hyderabad");
+		String body=response.getBody().asString();
+		System.out.println(body);
+		JsonPath jsonPathEvaluator=response.jsonPath();
+		String city=jsonPathEvaluator.get("City");
+		System.out.println("City:"+city);
+		Assert.assertEquals(response.getStatusCode() /*actual value*/, 200 /*expected value*/, "Correct status code returned");
+		Headers headers=response.getHeaders();
+		Iterator iterator=headers.iterator();
+		while (iterator.hasNext()) {
+			Header object = (Header) iterator.next();
+			System.out.println(object.getName());
+		}
+	}
+	
+	@Test
+	public void demo2(){
+		
+	}
+	
+	public static void getAllEmployees(){
+		RestAssured.baseURI="http://dummy.restapiexample.com/api/v1";
+		get("/employees").then().statusCode(200);
+		Response response=get("/employees");
+		System.out.println("Response of getAllEmployees:"+response.getBody().asString());
+	}
+	
+	public static void getParticularEmployee(int id){
+		RestAssured.baseURI="http://dummy.restapiexample.com/api/v1";
+		//RestAssured.defaultParser=Parser.TEXT;
+		get("/employee/"+id).then().statusCode(200).assertThat().body("resuid", equalTo(id));
+		//Response response=get("/employees");
+		//System.out.println("Response get Employee with "+id +" is :"+response.getBody().asString());
+	}
+	
+	public static void getParticularEmployeeSchemaValidation(int id){
+//		JsonSchemaFactory jsonSchemaFactory = JsonSchemaFactory
+//		          .newBuilder()
+//		          .setValidationConfiguration(
+//		            ValidationConfiguration.newBuilder()
+//		              .setDefaultVersion(SchemaVersion.DRAFTV4)
+//		              .freeze()).freeze();
+		RestAssured.baseURI="http://dummy.restapiexample.com/api/v1";
+		//RestAssured.defaultParser=Parser.TEXT;
+		get("/employee/"+id).then().statusCode(200).assertThat().body(matchesJsonSchemaInClasspath("resources/employee.json").using(settings().with().checkedValidation(false)));
+		//Response response=get("/employees");
+		//System.out.println("Response get Employee with "+id +" is :"+response.getBody().asString());
+	}
+	public static void main(String[] args) {
+		getParticularEmployeeSchemaValidation(5472);
+	}
+}
