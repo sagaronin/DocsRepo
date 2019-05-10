@@ -1,0 +1,57 @@
+Basic Xpath=============
+Xpath=//input [@type=’password’]
+Xpath=//label [@id=’label1′]
+Xpath=//input [@value=’RUN’]
+Xpath=//*[@class=’test-tuts’]
+Xpath=//a [@href=’http: //softwaretestingclass.com/’]
+Xpath=//*[@text='Email']
+
+Contains:=======================
+Xpath=//*[contains (@type, ‘sub-type’)]
+Xpath=.//* [contains (@name, ‘button’)]
+Xpath=//*[contains(@id, ‘login’)]
+Xpath=//*[contains(text (),’testing’)]
+Xpath=//*[contains (@href,’softwaretestingclass.com’)]  
+
+Using OR & AND==========================
+Xpath=//*[@type=’submit’ OR @name=’buttonSubmit’]
+Xpath=//input[@type=’submit’ AND @name=’buttonEnter’]
+
+
+Start-with function//we match the starting text of the attribute=================
+Xpath=//label[starts-with(@id, ‘message’)]
+
+Xpath Axis Methods:=============
+Xpath Axis Methods:
+a)Following:
+This method selects all the elements in the HTML document from the current node.
+Xpath=//*[@type=’password’]//following::input
+Xpath=//*[@type=’password’]//following::input[2]
+
+b) Ancestor: This method selects all the ancestors’ element such as grandparent, parent, etc. 
+   from the current node.
+Xpath=//*//ancestor::p
+Xpath=//*//ancestor::div [2]
+
+c) Child: This method selects all the children elements from the current node.
+Xpath=//*[@id=’navigation-list’]/child::li
+Xpath=//*[@id=’navigation-list’]/child::li[2]
+
+d) Preceding: This method selects all the nodes that come before the current node.
+Xpath=//*[@type=’text’]//preceding::input
+Xpath=//*[@type=’text’]//preceding::input[3]
+
+e)Following-sibling: This method Select the following siblings from the context node. 
+Siblings are located at the same level of the current.
+xpath=//*[@type=’text’]//following-sibling::input
+
+f) Parent: This method selects the parent of the current node
+Xpath=//*[@id=’soft-test-class’]//parent::div
+Xpath=//*[@id=’soft-test-class’]//parent::div[1]
+
+g) Self: This method selects the current node. Below is an example.
+Xpath =//*[@type=’text’]//self::input
+
+h) Descendant: This method selects the descendants of the current. Below is an example.
+Xpath=//*[@id=’soft-test-class’]//descendant::a
+Xpath=//*[@id=’soft-test-class’]//descendant::a[1]
