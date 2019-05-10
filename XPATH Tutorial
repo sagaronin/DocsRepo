@@ -55,3 +55,12 @@ Xpath =//*[@type=’text’]//self::input
 h) Descendant: This method selects the descendants of the current. Below is an example.
 Xpath=//*[@id=’soft-test-class’]//descendant::a
 Xpath=//*[@id=’soft-test-class’]//descendant::a[1]
+
+
+ancestor--->parent
+
+sibling 
+         preceding-sibling
+         following-sibling
+         
+descendant---->child
