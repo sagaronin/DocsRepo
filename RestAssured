@@ -284,3 +284,26 @@ public class ApiSuite {
 		getParticularEmployeeSchemaValidation(5472);
 	}
 }
+
+========================
+package com.restassured.demo;
+
+import com.jayway.jsonpath.DocumentContext;
+import com.jayway.jsonpath.JsonPath;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class TestSuite1 {
+	public static void main(String[] args) {
+		RestAssured.baseURI="http://restapi.demoqa.com/utilities/weather/city";
+		RequestSpecification httprequest=RestAssured.given();
+		Response response=httprequest.get("/Hyderabad");
+		String str=response.getBody().asString();
+		System.out.println(str);
+		DocumentContext jsonContext = JsonPath.parse(str);
+		String str123=jsonContext.read("$.City");
+		System.out.println(str123);
+	}
+}
