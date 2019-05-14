@@ -1,0 +1,40 @@
+class CommonUtils():
+    def monthNumber_to_actualMonth(month):
+        switcher = {
+            "01": "January",
+            "02": "February",
+            "03": "March",
+            "04": "April",
+            "05": "May",
+            "06": "June",
+            "07":"July",
+            "08":"August",
+        }
+        return switcher.get(month, "nothing")
+
+    def dateSelector(inputDate):
+        day = inputDate.split("/")[0]
+        month = inputDate.split("/")[1]
+        year = inputDate.split("/")[2]
+
+        monthInString = CommonUtils.monthNumber_to_actualMonth(month)
+        print("Day:" + day)
+        print("Month:" + month)
+        print("Year:" + year)
+        print("MonthInString:" + monthInString)
+
+    def generateUI_month_format(inputDate):
+        day = inputDate.split("/")[0]
+        month = inputDate.split("/")[1]
+        year = inputDate.split("/")[2]
+        monthInString = CommonUtils.monthNumber_to_actualMonth(month)
+        output = monthInString+" "+year
+        print(output)
+        return output
+
+    def get_day_from_date(inputDate):
+        return inputDate.split("/")[0]
+
+
+CommonUtils.generateUI_month_format("27/05/2019")
+=======================================================
