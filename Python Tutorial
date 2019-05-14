@@ -38,3 +38,67 @@ class CommonUtils():
 
 CommonUtils.generateUI_month_format("27/05/2019")
 =======================================================
+import Scripts.commonUtils
+from Scripts.commonUtils import CommonUtils
+
+CommonUtils.generateUI_month_format("27/05/2019")
+CommonUtils.dateSelector("27/05/2019")
+#generateUI_month_format("27/05/2019")
+try:
+    result=1/0
+    print("No Exception occured")
+except ZeroDivisionError:
+    print("You cannot divide a number by zero")
+
+=======================================================
+import time
+
+from Scripts.commonUtils import CommonUtils
+from selenium import webdriver
+from Scripts.commonUtils import CommonUtils
+
+driver = webdriver.Chrome(executable_path ="C:\\Users\\kingshuk.n\\PycharmProjects\\InitialPythonPractice\\lib\\chromedriver.exe")
+try:
+    driver.get('https://www.makemytrip.com/flights/');
+    driver.maximize_window()
+    time.sleep(2)
+
+    fromCity1 = driver.find_element_by_xpath("//input[@id='fromCity']")
+    fromCity1.click()
+
+    time.sleep(1)
+    driver.find_element_by_xpath("//div[@class='hsw_autocomplePopup autoSuggestPlugin']//input[@type='text']").send_keys("Kolkata")
+    time.sleep(2)
+
+    firstOptionFrom=driver.find_element_by_xpath("//div[@class='react-autosuggest__section-container react-autosuggest__section-container--first']//ul/li")
+    firstOptionFrom.click()
+    time.sleep(2)
+
+    driver.find_element_by_xpath("//div[@class='hsw_autocomplePopup autoSuggestPlugin']//input[@type='text']").send_keys("Nagpur")
+    time.sleep(2)
+
+    firstOptionFrom=driver.find_element_by_xpath("//div[@class='react-autosuggest__section-container react-autosuggest__section-container--first']//ul/li")
+    firstOptionFrom.click()
+    time.sleep(2)
+
+    inputDate="29/07/2019"
+    yearMonthMatcherSwipe=True
+
+    while yearMonthMatcherSwipe:
+      time.sleep(4)
+      month_year = driver.find_elements_by_xpath("//div[@class='DayPicker']//div[@class='DayPicker-Caption']//div")
+      for x in month_year:
+          month_year_value=x.__getattribute__("text")
+          if month_year_value == CommonUtils.generateUI_month_format(inputDate):
+              yearMonthMatcherSwipe = False
+              break
+          if yearMonthMatcherSwipe == True :
+              driver.find_element_by_xpath("//div[@class='DayPicker']//span[2]").click()
+    driver.find_element_by_xpath("//div[contains(text(),'"+CommonUtils.generateUI_month_format(inputDate)+"')]/ancestor::div[@class='DayPicker-Month']//p[contains(text(),'"+CommonUtils.get_day_from_date(inputDate)+"')]").click();
+    
+    time.sleep(5)
+    driver.quit()
+except :
+    print("Exception occured")
+    driver.quit()
+
